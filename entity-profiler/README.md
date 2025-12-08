@@ -46,6 +46,14 @@ Deterministic profiling of unknown individuals from low-resolution video using g
    python -m entity_profiler.cli.query_entity --entity-id <UUID>  # or omit to list all
    ```
 
+### Pose model (bring your own)
+
+To enable real pose estimation, place an ONNX pose model at `models/pose_estimator.onnx`.
+If the file is absent or the ONNX runtime is unavailable, the pipeline skips pose
+and returns empty pose lists without failing. A lightweight COCO-17 single-person
+model is recommended for CPU use; the same interface will work with GPU-enabled
+ONNX Runtime when you swap providers in deployment.
+
 ## Project layout
 
 - `src/entity_profiler`: core library code
