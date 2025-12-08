@@ -23,6 +23,7 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
    - Low mobility (gait speed proxy below a threshold)
    - (You can extend rules in `health/` as needed.)
 - Sends events to configurable notifiers (log file or webhook) and exposes recent events at `/health/events` and `/safety/events`.
+- Persists events to `data/interim/events.ndjson` for quick inspection/retention.
 
 ## Quickstart (GitHub Codespaces)
 
@@ -45,6 +46,11 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
 - The `/ingest_frame` endpoint accepts a single JPEG/PNG frame; you can point a Ring-like webhook or snapshot script at it. Pass a stable `camera_id` per device and a POSIX `timestamp` in seconds.
 - If your device exposes RTSP, you can extract still frames with `ffmpeg` and post them the same way; the profiling and safety logic remains the same.
 - A helper script `examples/rtsp_snapshot_to_ingest.sh` shows how to grab one frame via `ffmpeg` and `curl` it to `/ingest_frame`.
+- A simple puller `examples/rtsp_puller.py` can loop on an RTSP stream and post snapshots every few seconds; configure with `RTSP_URL`, `API_URL`, `CAMERA_ID`, `EP_API_TOKEN`.
+
+### API authentication
+
+- Set an environment variable `EP_API_TOKEN` before running the API to require `Authorization: Bearer <token>` on all endpoints.
 
 ### Wearable biometrics (optional)
 
