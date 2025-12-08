@@ -1,20 +1,28 @@
 # Entity Profiler
 
-Deterministic profiling of unknown individuals from low-resolution video using gait, soft biometrics, clothing descriptors, and pattern-of-life analysis.
+Safety monitoring built on deterministic movement profiling for low-resolution, Ring-style home cameras. The system builds simple numeric “fingerprints” (appearance + motion) for each observation, groups them into pseudonymous entities, and raises configurable safety and health events (e.g., quiet-hours motion, lingering near an entry, long inactivity).
 
-> **Important:** This project is a research / prototyping framework. It is *not* a turnkey identification system and must not be used as the sole basis for legal or safety‑critical decisions.
+> **Important:** This is a research / prototyping framework. It is *not* a medical or security product and must not be used as the sole basis for safety‑critical or clinical decisions.
 
-## Features
+## What it does (today)
 
-- Extracts person detections using a deterministic HOG+SVM model with light NMS.
-- Computes:
-  - Soft biometrics (height in pixels, aspect ratio, bounding-box area)
-  - Coarse clothing descriptors (color + texture histograms)
-  - Simple gait features from pose sequences
-- Fuses these features into a vector for each observation.
-- Clusters observations into pseudonymous entities.
-- Builds basic pattern-of-life summaries per entity (camera usage, time-of-day histogram).
-- Exposes a FastAPI endpoint to ingest frames and receive entity assignments & summaries.
+- Detects people (OpenCV HOG+SVM + NMS) and, if you provide an ONNX pose model, estimates pose; otherwise it skips pose gracefully.
+- Computes lightweight features per detection:
+   - Soft biometrics (bbox height, aspect ratio, area)
+   - Clothing color/texture histograms
+   - Simple gait features (from pose, if available)
+- Fuses features and clusters them into pseudonymous entities (no real identities).
+- Summarizes pattern of life (camera usage, hour-of-day histogram, span of observations).
+- Evaluates **safety rules** on each ingest (or in batch) using `data/safety_config.json`, emitting events for:
+   - Quiet-hours motion on perimeter/door cameras
+   - Lingering in view beyond a threshold
+   - Bursts of motion in short windows
+- Evaluates **health rules** on each ingest (or in batch) using `data/health_config.json`, emitting events for:
+   - No recent activity beyond a threshold
+   - Night-time activity above a threshold
+   - Low mobility (gait speed proxy below a threshold)
+   - (You can extend rules in `health/` as needed.)
+- Sends events to configurable notifiers (log file or webhook) and exposes recent events at `/health/events` and `/safety/events`.
 
 ## Quickstart (GitHub Codespaces)
 
@@ -32,6 +40,12 @@ Deterministic profiling of unknown individuals from low-resolution video using g
    curl -X POST "http://localhost:8000/ingest_frame"      -F "camera_id=cam01"      -F "timestamp=1719945600.0"      -F "frame=@examples/sample_frame.jpg"
    ```
 
+### Ring-style snapshots
+
+- The `/ingest_frame` endpoint accepts a single JPEG/PNG frame; you can point a Ring-like webhook or snapshot script at it. Pass a stable `camera_id` per device and a POSIX `timestamp` in seconds.
+- If your device exposes RTSP, you can extract still frames with `ffmpeg` and post them the same way; the profiling and safety logic remains the same.
+- A helper script `examples/rtsp_snapshot_to_ingest.sh` shows how to grab one frame via `ffmpeg` and `curl` it to `/ingest_frame`.
+
 ### CLI utilities
 
 - Build profiles from a video or image directory and persist the store + summaries:
@@ -46,9 +60,20 @@ Deterministic profiling of unknown individuals from low-resolution video using g
    python -m entity_profiler.cli.query_entity --entity-id <UUID>  # or omit to list all
    ```
 
+### Safety monitoring (prototype)
+
+- Copy `data/safety_config.example.json` to `data/safety_config.json` and tune quiet hours, linger thresholds, and notifier targets (log or webhook).
+- Batch-evaluate a persisted store:
+
+   ```bash
+   python -m entity_profiler.cli.safety_report entity_store.json --output safety_events.json
+   ```
+
+- The API evaluates safety rules on each `/ingest_frame` call and emits events to configured notifiers; recent events are available at `/safety/events`.
+
 ### Health monitoring (prototype)
 
-- Provide a simple `data/health_config.json` to set thresholds (idle hours, night window, low-mobility speed) and notification targets (log or webhook).
+- Provide a simple `data/health_config.json` to set thresholds (idle hours, night window, low-mobility speed) and notification targets (log or webhook). A starter config is at `data/health_config.example.json`—copy it to `data/health_config.json` and tune for your environment.
 - Run batch reports:
 
    ```bash

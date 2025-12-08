@@ -1,0 +1,14 @@
+{
+  "no_activity_hours": 8,
+  "night_hours": [0, 6],
+  "night_activity_threshold": 5,
+  "low_mobility_speed_threshold": 0.05,
+  "notify_min_severity": "warning",
+  "notification_targets": [
+    ["log", "data/interim/health_events.log"]
+  ],
+  "areas": {
+    "cam01": {"label": "Hallway West", "risk": "medium"},
+    "cam02": {"label": "Common Room", "risk": "low"}
+  }
+}

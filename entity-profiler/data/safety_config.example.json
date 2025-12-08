@@ -1,0 +1,16 @@
+{
+  "quiet_hours": [23, 6],
+  "quiet_hours_cameras": ["door_cam", "driveway_cam"],
+  "linger_seconds": 150,
+  "burst_window_seconds": 60,
+  "burst_count_threshold": 6,
+  "notify_min_severity": "info",
+  "notification_targets": [
+    ["log", "data/interim/safety_events.log"]
+  ],
+  "areas": {
+    "door_cam": {"label": "Front Door", "risk": "high"},
+    "driveway_cam": {"label": "Driveway", "risk": "high"},
+    "backyard_cam": {"label": "Backyard", "risk": "medium"}
+  }
+}

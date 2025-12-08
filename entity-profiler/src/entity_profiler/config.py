@@ -53,6 +53,18 @@ class HealthConfig:
     areas: dict = None  # camera_id -> {"label": str, "risk": str}
 
 
+@dataclass
+class SafetyConfig:
+    quiet_hours: tuple = (23, 6)  # start, end (24h); supports wrap-around
+    quiet_hours_cameras: tuple = ()  # cameras considered perimeter/doors
+    linger_seconds: float = 120.0  # how long someone can linger before alert
+    burst_window_seconds: float = 60.0
+    burst_count_threshold: int = 6
+    notify_min_severity: str = "info"
+    notification_targets: tuple = ()
+    areas: dict = None  # camera_id -> {"label": str, "risk": str}
+
+
 def load_config() -> ProfilingConfig:
     seed = int(os.getenv("EP_GLOBAL_SEED", DEFAULT_SEED))
     set_global_seed(seed)
@@ -80,6 +92,31 @@ def load_health_config(paths: Paths | None = None) -> HealthConfig:
         night_activity_threshold=int(payload.get("night_activity_threshold", 5)),
         low_mobility_speed_threshold=float(payload.get("low_mobility_speed_threshold", 0.05)),
         notify_min_severity=str(payload.get("notify_min_severity", "warning")),
+        notification_targets=tuple(payload.get("notification_targets", ())),
+        areas=payload.get("areas", {}) or {},
+    )
+
+
+def load_safety_config(paths: Paths | None = None) -> SafetyConfig:
+    if paths is None:
+        paths = Paths()
+    paths.ensure()
+    cfg_path = paths.data_root / "safety_config.json"
+    if not cfg_path.exists():
+        return SafetyConfig(areas={}, notification_targets=())
+    try:
+        with open(cfg_path, "r", encoding="utf-8") as f:
+            payload = json.load(f)
+    except Exception:
+        return SafetyConfig(areas={}, notification_targets=())
+
+    return SafetyConfig(
+        quiet_hours=tuple(payload.get("quiet_hours", (23, 6))),
+        quiet_hours_cameras=tuple(payload.get("quiet_hours_cameras", ())),
+        linger_seconds=float(payload.get("linger_seconds", 120.0)),
+        burst_window_seconds=float(payload.get("burst_window_seconds", 60.0)),
+        burst_count_threshold=int(payload.get("burst_count_threshold", 6)),
+        notify_min_severity=str(payload.get("notify_min_severity", "info")),
         notification_targets=tuple(payload.get("notification_targets", ())),
         areas=payload.get("areas", {}) or {},
     )
