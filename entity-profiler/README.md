@@ -46,6 +46,17 @@ Deterministic profiling of unknown individuals from low-resolution video using g
    python -m entity_profiler.cli.query_entity --entity-id <UUID>  # or omit to list all
    ```
 
+### Health monitoring (prototype)
+
+- Provide a simple `data/health_config.json` to set thresholds (idle hours, night window, low-mobility speed) and notification targets (log or webhook).
+- Run batch reports:
+
+   ```bash
+   python -m entity_profiler.cli.health_report entity_store.json --output health_events.json
+   ```
+
+- The API evaluates health rules on each `/ingest_frame` call and emits events to configured notifiers; recent events are available at `/health/events`.
+
 ### Pose model (bring your own)
 
 To enable real pose estimation, place an ONNX pose model at `models/pose_estimator.onnx`.

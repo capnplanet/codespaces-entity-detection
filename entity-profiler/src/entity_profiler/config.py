@@ -2,6 +2,7 @@ import os
 import random
 from dataclasses import dataclass
 from pathlib import Path
+import json
 
 import numpy as np
 
@@ -41,9 +42,44 @@ class ProfilingConfig:
     min_observations_for_entity: int = 1
 
 
+@dataclass
+class HealthConfig:
+    no_activity_hours: float = 8.0
+    night_hours: tuple = (0, 6)
+    night_activity_threshold: int = 5  # observations during night to flag wandering
+    low_mobility_speed_threshold: float = 0.05  # approx gait speed proxy
+    notify_min_severity: str = "warning"
+    notification_targets: tuple = ()  # e.g., (("log", "data/interim/health_events.log"),)
+    areas: dict = None  # camera_id -> {"label": str, "risk": str}
+
+
 def load_config() -> ProfilingConfig:
     seed = int(os.getenv("EP_GLOBAL_SEED", DEFAULT_SEED))
     set_global_seed(seed)
     paths = Paths()
     paths.ensure()
     return ProfilingConfig()
+
+
+def load_health_config(paths: Paths | None = None) -> HealthConfig:
+    if paths is None:
+        paths = Paths()
+    paths.ensure()
+    cfg_path = paths.data_root / "health_config.json"
+    if not cfg_path.exists():
+        return HealthConfig(areas={}, notification_targets=())
+    try:
+        with open(cfg_path, "r", encoding="utf-8") as f:
+            payload = json.load(f)
+    except Exception:
+        return HealthConfig(areas={}, notification_targets=())
+
+    return HealthConfig(
+        no_activity_hours=float(payload.get("no_activity_hours", 8.0)),
+        night_hours=tuple(payload.get("night_hours", (0, 6))),
+        night_activity_threshold=int(payload.get("night_activity_threshold", 5)),
+        low_mobility_speed_threshold=float(payload.get("low_mobility_speed_threshold", 0.05)),
+        notify_min_severity=str(payload.get("notify_min_severity", "warning")),
+        notification_targets=tuple(payload.get("notification_targets", ())),
+        areas=payload.get("areas", {}) or {},
+    )

@@ -5,7 +5,7 @@ import numpy as np
 from fastapi import FastAPI, UploadFile, File, Form
 from pydantic import BaseModel
 
-from ..config import load_config
+from ..config import load_config, load_health_config, Paths
 from ..vision.detection import PersonDetector
 from ..vision.pose_estimation import PoseEstimator
 from ..vision.soft_biometrics import compute_soft_biometrics
@@ -15,14 +15,22 @@ from ..features.fusion import fuse_features
 from ..profiling.entity_store import EntityStore
 from ..profiling.clustering import EntityClusteringEngine
 from ..profiling.pattern_of_life import summarize_entity_pattern
+from ..health.rules import evaluate_health_events
+from ..health.notifications import build_notifiers
 
 app = FastAPI(title="Entity Profiler API")
 
 cfg = load_config()
+health_cfg = load_health_config()
+paths = Paths()
 store = EntityStore()
 cluster_engine = EntityClusteringEngine(store)
 detector = PersonDetector()
 pose_estimator = PoseEstimator()
+health_notifiers = build_notifiers(
+    list(health_cfg.notification_targets), paths.interim_dir / "health_events.log"
+)
+_recent_events: List[dict] = []  # in-memory buffer of recent events
 
 
 class EntityObservationResponse(BaseModel):
@@ -63,6 +71,14 @@ async def ingest_frame(
                 profile_summary=summary,
             )
         )
+
+    # Evaluate health events once per ingest call (frame-level granularity)
+    events = evaluate_health_events(store, health_cfg, now_ts=timestamp)
+    for ev in events:
+        _recent_events.append(ev.__dict__)
+        for n in health_notifiers:
+            n.send(ev)
+
     return responses
 
 
@@ -70,3 +86,9 @@ async def ingest_frame(
 def list_entities():
     """List all current entity summaries."""
     return [summarize_entity_pattern(p) for p in store.get_all_profiles()]
+
+
+@app.get("/health/events")
+def list_health_events():
+    """List recent health events observed in this process."""
+    return _recent_events[-100:]
