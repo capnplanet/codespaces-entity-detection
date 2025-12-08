@@ -46,6 +46,12 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
 - If your device exposes RTSP, you can extract still frames with `ffmpeg` and post them the same way; the profiling and safety logic remains the same.
 - A helper script `examples/rtsp_snapshot_to_ingest.sh` shows how to grab one frame via `ffmpeg` and `curl` it to `/ingest_frame`.
 
+### Wearable biometrics (optional)
+
+- Send heart-rate/SpO2 samples to `/ingest_wearable` as JSON: `[ {"device_id": "fitbit_123", "timestamp": 1719945600.0, "heart_rate": 120, "spo2": 94} ]`.
+- Map devices to entities in `data/health_config.json` under `wearables` and tune thresholds (`hr_high`, `hr_low`, `spo2_low`, windows).
+- Health events will include wearable-derived alerts (elevated HR while idle, low SpO2) and flow through the same notifiers.
+
 ### CLI utilities
 
 - Build profiles from a video or image directory and persist the store + summaries:

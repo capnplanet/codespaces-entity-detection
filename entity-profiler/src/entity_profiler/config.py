@@ -51,6 +51,12 @@ class HealthConfig:
     notify_min_severity: str = "warning"
     notification_targets: tuple = ()  # e.g., (("log", "data/interim/health_events.log"),)
     areas: dict = None  # camera_id -> {"label": str, "risk": str}
+    hr_high: float = 110.0
+    hr_low: float = 45.0
+    spo2_low: float = 92.0
+    wearable_window_seconds: float = 900.0
+    wearable_idle_grace_seconds: float = 600.0
+    wearables: tuple = ()  # iterable of {device_id, entity_id?, slot?, notes?}
 
 
 @dataclass
@@ -94,6 +100,12 @@ def load_health_config(paths: Paths | None = None) -> HealthConfig:
         notify_min_severity=str(payload.get("notify_min_severity", "warning")),
         notification_targets=tuple(payload.get("notification_targets", ())),
         areas=payload.get("areas", {}) or {},
+        hr_high=float(payload.get("hr_high", 110.0)),
+        hr_low=float(payload.get("hr_low", 45.0)),
+        spo2_low=float(payload.get("spo2_low", 92.0)),
+        wearable_window_seconds=float(payload.get("wearable_window_seconds", 900.0)),
+        wearable_idle_grace_seconds=float(payload.get("wearable_idle_grace_seconds", 600.0)),
+        wearables=tuple(payload.get("wearables", ())),
     )
 
 

@@ -10,5 +10,13 @@
   "areas": {
     "cam01": {"label": "Hallway West", "risk": "medium"},
     "cam02": {"label": "Common Room", "risk": "low"}
-  }
+  },
+  "hr_high": 110,
+  "hr_low": 45,
+  "spo2_low": 92,
+  "wearable_window_seconds": 900,
+  "wearable_idle_grace_seconds": 600,
+  "wearables": [
+    {"device_id": "fitbit_123", "entity_id": "<ENTITY-ID-ONCE-KNOWN>", "slot": "resident_a"}
+  ]
 }

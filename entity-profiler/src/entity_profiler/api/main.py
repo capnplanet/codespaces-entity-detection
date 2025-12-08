@@ -15,8 +15,9 @@ from ..features.fusion import fuse_features
 from ..profiling.entity_store import EntityStore
 from ..profiling.clustering import EntityClusteringEngine
 from ..profiling.pattern_of_life import summarize_entity_pattern
-from ..health.rules import evaluate_health_events
+from ..health.rules import evaluate_health_events_with_wearables
 from ..health.notifications import build_notifiers
+from ..health.wearables import WearableBuffer, WearableSample
 from ..safety.rules import evaluate_safety_events
 
 app = FastAPI(title="Entity Profiler API")
@@ -29,6 +30,7 @@ store = EntityStore()
 cluster_engine = EntityClusteringEngine(store)
 detector = PersonDetector()
 pose_estimator = PoseEstimator()
+wearable_buffer = WearableBuffer()
 health_notifiers = build_notifiers(
     list(health_cfg.notification_targets), paths.interim_dir / "health_events.log"
 )
@@ -37,6 +39,7 @@ safety_notifiers = build_notifiers(
 )
 _recent_events: List[dict] = []  # in-memory buffer of recent events
 _recent_safety_events: List[dict] = []
+_recent_wearable_events: List[dict] = []
 
 
 class EntityObservationResponse(BaseModel):
@@ -79,7 +82,7 @@ async def ingest_frame(
         )
 
     # Evaluate health events once per ingest call (frame-level granularity)
-    events = evaluate_health_events(store, health_cfg, now_ts=timestamp)
+    events = evaluate_health_events_with_wearables(store, health_cfg, wearable_buffer=wearable_buffer, now_ts=timestamp)
     for ev in events:
         _recent_events.append(ev.__dict__)
         for n in health_notifiers:
@@ -111,3 +114,28 @@ def list_health_events():
 def list_safety_events():
     """List recent safety events observed in this process."""
     return _recent_safety_events[-100:]
+
+
+class WearableIngest(BaseModel):
+    device_id: str
+    timestamp: float
+    heart_rate: float | None = None
+    spo2: float | None = None
+
+
+@app.post("/ingest_wearable")
+def ingest_wearable(samples: List[WearableIngest]):
+    """Ingest one or more wearable biometric samples (heart rate, SpO2)."""
+    to_store: List[WearableSample] = []
+    for s in samples:
+        to_store.append(
+            WearableSample(
+                device_id=s.device_id,
+                timestamp=s.timestamp,
+                heart_rate=s.heart_rate,
+                spo2=s.spo2,
+                raw=None,
+            )
+        )
+    wearable_buffer.add_samples(to_store)
+    return {"accepted": len(to_store)}
