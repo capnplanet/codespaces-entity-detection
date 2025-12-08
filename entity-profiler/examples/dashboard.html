@@ -21,20 +21,30 @@
 <body>
   <h1>Entity Profiler Dashboard</h1>
   <div class="controls">
-    <label>API URL <input id="apiUrl" size="40" value="http://localhost:8000" /></label>
-    <label>Bearer Token <input id="token" size="40" placeholder="optional" /></label>
+    <label>API URL <input id="apiUrl" size="32" value="http://localhost:8000" /></label>
+    <label>Bearer Token <input id="token" size="28" placeholder="optional" /></label>
     <label>API Key <input id="apiKey" size="20" placeholder="optional" /></label>
+    <label>Severity
+      <select id="severity">
+        <option value="">all</option>
+        <option value="critical">critical</option>
+        <option value="warning">warning</option>
+        <option value="info">info</option>
+      </select>
+    </label>
+    <label>Device <input id="device" size="10" placeholder="device-id" /></label>
+    <label>Entity <input id="entity" size="10" placeholder="entity-id" /></label>
     <button onclick="refreshAll()">Refresh</button>
   </div>
   <div id="status"></div>
   <h3>Health Events</h3>
   <table id="healthTable">
-    <thead><tr><th>Time</th><th>Entity</th><th>Type</th><th>Severity</th><th>Description</th></tr></thead>
+    <thead><tr><th>Time</th><th>Entity</th><th>Device</th><th>Type</th><th>Severity</th><th>Status</th><th>Description</th><th>Actions</th></tr></thead>
     <tbody></tbody>
   </table>
   <h3>Safety Events</h3>
   <table id="safetyTable">
-    <thead><tr><th>Time</th><th>Entity</th><th>Type</th><th>Severity</th><th>Description</th></tr></thead>
+    <thead><tr><th>Time</th><th>Entity</th><th>Device</th><th>Type</th><th>Severity</th><th>Status</th><th>Description</th><th>Actions</th></tr></thead>
     <tbody></tbody>
   </table>
   <script>
@@ -50,13 +60,38 @@
       const d = new Date(ts * 1000);
       return d.toISOString();
     }
+    function matchesFilters(ev) {
+      const sev = document.getElementById('severity').value;
+      const dev = document.getElementById('device').value.trim();
+      const ent = document.getElementById('entity').value.trim();
+      if (sev && ev.severity !== sev) return false;
+      if (dev && ev.device_id !== dev) return false;
+      if (ent && ev.entity_id !== ent) return false;
+      return true;
+    }
+
+    async function ack(eventId, status) {
+      const api = document.getElementById('apiUrl').value.replace(/\/$/, '');
+      const headers = { 'Content-Type': 'application/json' };
+      const t = document.getElementById('token').value.trim();
+      const k = document.getElementById('apiKey').value.trim();
+      if (t) headers['Authorization'] = 'Bearer ' + t;
+      if (k) headers['X-Api-Key'] = k;
+      await fetch(api + '/events/ack', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ event_id: eventId, status })
+      }).catch(() => {});
+    }
+
     function render(tableId, events) {
       const tbody = document.querySelector(`#${tableId} tbody`);
       tbody.innerHTML = '';
       events.slice().reverse().forEach(ev => {
+        if (!matchesFilters(ev)) return;
         const tr = document.createElement('tr');
         const sevClass = 'severity-' + (ev.severity || 'info');
-        tr.innerHTML = `<td>${fmt(ev.timestamp)}</td><td>${ev.entity_id||''}</td><td>${ev.type||''}</td><td class="${sevClass}">${ev.severity||''}</td><td>${ev.description||''}</td>`;
+        tr.innerHTML = `<td>${fmt(ev.timestamp)}</td><td>${ev.entity_id||''}</td><td>${ev.device_id||''}</td><td>${ev.type||''}</td><td class="${sevClass}">${ev.severity||''}</td><td>${ev.status||'open'}</td><td>${ev.description||''}</td><td><button onclick="ack('${ev.event_id}','acknowledged')">Ack</button><button onclick="ack('${ev.event_id}','resolved')">Resolve</button></td>`;
         tbody.appendChild(tr);
       });
     }

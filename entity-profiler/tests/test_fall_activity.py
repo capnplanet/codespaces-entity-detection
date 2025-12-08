@@ -32,6 +32,26 @@ def test_fall_detection_triggers():
     assert "fall_suspected" in types
 
 
+def test_fall_model_triggers_with_speed_delta():
+    store = EntityStore()
+    profile = store.create_entity()
+    profile.observations.append(_make_obs(ts=0.0, cam="cam01", height=200.0, aspect=0.4, area=8000.0))
+    profile.observations.append(_make_obs(ts=1.5, cam="cam01", height=60.0, aspect=1.4, area=13000.0))
+
+    cfg = HealthConfig(
+        fall_height_drop_ratio=0.4,
+        fall_aspect_ratio_increase=1.2,
+        fall_area_increase=0.1,
+        fall_time_window_seconds=4.0,
+        fall_speed_delta=0.05,
+        fall_score_threshold=0.3,
+    )
+
+    events = evaluate_health_events_with_wearables(store, cfg, wearable_buffer=None, now_ts=2.0)
+    types = {e.type for e in events}
+    assert "fall_model_suspected" in types
+
+
 def test_high_activity_emits_info():
     store = EntityStore()
     profile = store.create_entity()

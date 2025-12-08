@@ -6,6 +6,7 @@ from ..profiling.entity_store import EntityStore, EntityProfile
 from .metrics import last_seen_seconds, presence_histograms, gait_speed_stats
 from .wearables import WearableBuffer
 from .fall_activity import fall_and_activity_events
+from .fall_model import fall_model_events
 from .events import HealthEvent, severity_allows
 
 
@@ -91,6 +92,7 @@ def evaluate_health_events_with_wearables(
 
         # add fall/activity heuristics regardless of wearable presence
         enriched.extend(fall_and_activity_events(profile, cfg, now_ts))
+        enriched.extend(fall_model_events(profile, cfg, now_ts))
 
         device_id = _matching_wearable_device(cfg, profile)
         if not device_id or wearable_buffer is None:

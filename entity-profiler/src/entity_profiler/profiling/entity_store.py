@@ -99,6 +99,9 @@ class EntityStore:
     def get_all_profiles(self) -> List[EntityProfile]:
         return list(self._entities.values())
 
+    def get_profile(self, entity_id: str) -> EntityProfile | None:
+        return self._entities.get(entity_id)
+
     def save_json(self, path: Path | str) -> None:
         out_path = Path(path)
         out_path.parent.mkdir(parents=True, exist_ok=True)

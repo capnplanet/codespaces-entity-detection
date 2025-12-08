@@ -40,6 +40,9 @@ class ProfilingConfig:
     max_track_gap_seconds: float = 2.0
     fused_distance_threshold: float = 1.5
     min_observations_for_entity: int = 1
+    use_onnx_detector: bool = True
+    tracker_sim_threshold: float = 0.7
+    tracker_max_age_seconds: float = 3.0
 
 
 @dataclass
@@ -61,6 +64,8 @@ class HealthConfig:
     fall_aspect_ratio_increase: float = 1.8  # aspect goes from tall to wide
     fall_area_increase: float = 0.25  # relative area increase allowed
     fall_time_window_seconds: float = 4.0
+    fall_speed_delta: float = 0.2  # gait speed jump to reinforce fall detection
+    fall_score_threshold: float = 0.6  # fused fall score to emit
     activity_window_seconds: float = 900.0
     high_activity_count_threshold: int = 8
 
@@ -82,7 +87,11 @@ def load_config() -> ProfilingConfig:
     set_global_seed(seed)
     paths = Paths()
     paths.ensure()
-    return ProfilingConfig()
+    return ProfilingConfig(
+        use_onnx_detector=bool(int(os.getenv("EP_USE_ONNX_DETECTOR", "1"))),
+        tracker_sim_threshold=float(os.getenv("EP_TRACKER_SIM_THRESHOLD", "0.7")),
+        tracker_max_age_seconds=float(os.getenv("EP_TRACKER_MAX_AGE_SECONDS", "3.0")),
+    )
 
 
 def load_health_config(paths: Paths | None = None) -> HealthConfig:
@@ -116,6 +125,8 @@ def load_health_config(paths: Paths | None = None) -> HealthConfig:
         fall_aspect_ratio_increase=float(payload.get("fall_aspect_ratio_increase", 1.8)),
         fall_area_increase=float(payload.get("fall_area_increase", 0.25)),
         fall_time_window_seconds=float(payload.get("fall_time_window_seconds", 4.0)),
+        fall_speed_delta=float(payload.get("fall_speed_delta", 0.2)),
+        fall_score_threshold=float(payload.get("fall_score_threshold", 0.6)),
         activity_window_seconds=float(payload.get("activity_window_seconds", 900.0)),
         high_activity_count_threshold=int(payload.get("high_activity_count_threshold", 8)),
     )
