@@ -1,8 +1,11 @@
 from typing import List
+import asyncio
+import json
 
 import cv2
 import numpy as np
 from fastapi import FastAPI, UploadFile, File, Form, Depends, HTTPException, status
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
 from ..config import load_config, load_health_config, load_safety_config, Paths
@@ -20,7 +23,7 @@ from ..health.notifications import build_notifiers
 from ..health.wearables import WearableBuffer, WearableSample
 from ..safety.rules import evaluate_safety_events
 from ..utils.event_store import NDJSONEventStore
-from ..utils.auth import require_token
+from ..utils.auth import require_token, validate_token_or_key
 
 app = FastAPI(title="Entity Profiler API")
 
@@ -52,6 +55,7 @@ event_store = NDJSONEventStore(paths.interim_dir / "events.ndjson")
 _recent_events: List[dict] = []  # in-memory buffer of recent events
 _recent_safety_events: List[dict] = []
 _recent_wearable_events: List[dict] = []
+_event_queue: asyncio.Queue[dict] = asyncio.Queue()
 
 
 class EntityObservationResponse(BaseModel):
@@ -98,6 +102,10 @@ async def ingest_frame(
     events = evaluate_health_events_with_wearables(store, health_cfg, wearable_buffer=wearable_buffer, now_ts=timestamp)
     for ev in events:
         _recent_events.append(ev.__dict__)
+        try:
+            _event_queue.put_nowait({"category": "health", **ev.__dict__})
+        except Exception:
+            pass
         for n in health_notifiers:
             n.send(ev)
     event_store.append([ev.__dict__ for ev in events])
@@ -106,6 +114,10 @@ async def ingest_frame(
     safety_events = evaluate_safety_events(store, safety_cfg, now_ts=timestamp)
     for ev in safety_events:
         _recent_safety_events.append(ev.__dict__)
+        try:
+            _event_queue.put_nowait({"category": "safety", **ev.__dict__})
+        except Exception:
+            pass
         for n in safety_notifiers:
             n.send(ev)
     event_store.append([ev.__dict__ for ev in safety_events])
@@ -129,6 +141,19 @@ def list_health_events(_: None = Depends(require_token)):
 def list_safety_events(_: None = Depends(require_token)):
     """List recent safety events observed in this process."""
     return _recent_safety_events[-100:]
+
+
+async def _event_stream():
+    while True:
+        ev = await _event_queue.get()
+        yield f"data: {json.dumps(ev)}\n\n"
+
+
+@app.get("/events/stream")
+async def stream_events(token: str | None = None, api_key: str | None = None):
+    # Support query token/api_key for browser EventSource; falls back to disabled if none set.
+    validate_token_or_key(token, api_key)
+    return StreamingResponse(_event_stream(), media_type="text/event-stream")
 
 
 class WearableIngest(BaseModel):

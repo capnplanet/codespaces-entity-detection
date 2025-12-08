@@ -23,6 +23,7 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
    - Low mobility (gait speed proxy below a threshold)
    - (You can extend rules in `health/` as needed.)
 - Sends events to configurable notifiers (log file or webhook), exposes recent events at `/health/events` and `/safety/events`, and appends all events to `data/interim/events.ndjson`.
+- Real-time stream available at `/events/stream` (SSE); use dashboard or a client to subscribe.
 - Persists events to `data/interim/events.ndjson` for quick inspection/retention.
 
 ## Quickstart (GitHub Codespaces)
@@ -48,6 +49,7 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
 - A helper script `examples/rtsp_snapshot_to_ingest.sh` shows how to grab one frame via `ffmpeg` and `curl` it to `/ingest_frame`.
 - A simple puller `examples/rtsp_puller.py` can loop on an RTSP stream and post snapshots every few seconds; configure with `RTSP_URL`, `API_URL`, `CAMERA_ID`, `EP_API_TOKEN`.
 - A lightweight dashboard `examples/dashboard.html` fetches recent health/safety events; open it in a browser and set your API URL and token/key.
+- The dashboard will try real-time streaming via `/events/stream` and fall back to polling if streaming fails.
 
 ### API authentication
 

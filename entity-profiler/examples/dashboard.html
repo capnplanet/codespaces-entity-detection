@@ -66,6 +66,44 @@
       if (!res.ok) throw new Error(`${path} ${res.status}`);
       return res.json();
     }
+    let es;
+
+    function startStream() {
+      const statusEl = document.getElementById('status');
+      const api = document.getElementById('apiUrl').value.replace(/\/$/, '');
+      const t = encodeURIComponent(document.getElementById('token').value.trim());
+      const k = encodeURIComponent(document.getElementById('apiKey').value.trim());
+      const url = `${api}/events/stream?token=${t}&api_key=${k}`;
+      if (es) es.close();
+      try {
+        es = new EventSource(url);
+        es.onmessage = (evt) => {
+          try {
+            const ev = JSON.parse(evt.data);
+            if (ev.category === 'health') {
+              render('healthTable', (window._health = (window._health || []).concat([ev])).slice(-100));
+            } else if (ev.category === 'safety') {
+              render('safetyTable', (window._safety = (window._safety || []).concat([ev])).slice(-100));
+            }
+            statusEl.textContent = 'Streaming';
+          } catch (e) {
+            statusEl.textContent = 'Parse error';
+          }
+        };
+        es.onerror = () => {
+          statusEl.textContent = 'Stream error, falling back to polling';
+          es.close();
+          es = null;
+          refreshAll();
+          setInterval(refreshAll, 10000);
+        };
+      } catch (e) {
+        statusEl.textContent = 'Stream setup failed, polling';
+        refreshAll();
+        setInterval(refreshAll, 10000);
+      }
+    }
+
     async function refreshAll() {
       const status = document.getElementById('status');
       status.textContent = 'Loading...';
@@ -74,15 +112,18 @@
           fetchEvents('/health/events'),
           fetchEvents('/safety/events')
         ]);
-        render('healthTable', health || []);
-        render('safetyTable', safety || []);
-        status.textContent = 'OK';
+        window._health = health || [];
+        window._safety = safety || [];
+        render('healthTable', window._health);
+        render('safetyTable', window._safety);
+        status.textContent = 'OK (polling)';
       } catch (e) {
         status.textContent = 'Error: ' + e.message;
       }
     }
+
     refreshAll();
-    setInterval(refreshAll, 10000);
+    startStream();
   </script>
 </body>
 </html>

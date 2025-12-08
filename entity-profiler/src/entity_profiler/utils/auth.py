@@ -9,25 +9,25 @@ def _load_api_keys() -> set[str]:
     return {k.strip() for k in raw.split(",") if k.strip()}
 
 
+def validate_token_or_key(bearer_token: str | None, api_key: str | None):
+    token = os.getenv("EP_API_TOKEN")
+    api_keys = _load_api_keys()
+    if not token and not api_keys:
+        return
+
+    if token and bearer_token == token:
+        return
+    if api_keys and api_key and api_key in api_keys:
+        return
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Unauthorized")
+
+
 def require_token(
     authorization: str | None = Header(default=None),
     x_api_key: str | None = Header(default=None, convert_underscores=False),
 ):
-    token = os.getenv("EP_API_TOKEN")
-    api_keys = _load_api_keys()
-    if not token and not api_keys:
-        return None  # auth disabled
-
-    # Bearer token path
-    if token:
-        if authorization and authorization.lower().startswith("bearer "):
-            provided = authorization.split(" ", 1)[1].strip()
-            if provided == token:
-                return None
-        # fall through to API key check if bearer missing/invalid
-
-    # API key path
-    if api_keys and x_api_key and x_api_key in api_keys:
-        return None
-
-    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Unauthorized")
+    bearer = None
+    if authorization and authorization.lower().startswith("bearer "):
+        bearer = authorization.split(" ", 1)[1].strip()
+    validate_token_or_key(bearer, x_api_key)
+    return None
