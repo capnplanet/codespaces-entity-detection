@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: entity-profiler
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: entity-profiler
+  template:
+    metadata:
+      labels:
+        app: entity-profiler
+    spec:
+      containers:
+        - name: api
+          image: entity-profiler:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: EP_GLOBAL_SEED
+              value: "1337"
