@@ -100,13 +100,19 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
 
 - The API evaluates health rules on each `/ingest_frame` call and emits events to configured notifiers; recent events are available at `/health/events`.
 
-### Pose model (bring your own)
+### Models (bring your own)
 
-To enable real pose estimation, place an ONNX pose model at `models/pose_estimator.onnx`.
-If the file is absent or the ONNX runtime is unavailable, the pipeline skips pose
-and returns empty pose lists without failing. A lightweight COCO-17 single-person
-model is recommended for CPU use; the same interface will work with GPU-enabled
-ONNX Runtime when you swap providers in deployment.
+- **Detection (optional):** Place a person detector at `models/detector.onnx` (create a `models/` dir beside `src/`). The runtime expects a single input tensor shaped `1x3x640x640`, float32, RGB, normalized to `[0,1]`, and a single output shaped `(N, 6)` ordered `[x1, y1, x2, y2, score, class]`. Only class `0` is kept. Example export for a tiny CPU-friendly model:
+
+   ```bash
+   pip install ultralytics onnxruntime  # if you want to export locally
+   yolo export model=yolov8n.pt format=onnx opset=12 simplify=true
+   mkdir -p models && mv yolov8n.onnx models/detector.onnx
+   ```
+
+   If the model or ONNX Runtime is missing, the pipeline falls back to OpenCV HOG+SVM automatically.
+
+- **Pose (optional):** Place an ONNX pose model at `models/pose_estimator.onnx`. If the file is absent or the ONNX runtime is unavailable, the pipeline skips pose and returns empty pose lists without failing. A lightweight COCO-17 single-person model is recommended for CPU use; the same interface will work with GPU-enabled ONNX Runtime when you swap providers in deployment.
 
 ## Project layout
 
