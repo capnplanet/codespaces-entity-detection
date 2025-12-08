@@ -24,6 +24,15 @@ from ..utils.auth import require_token
 
 app = FastAPI(title="Entity Profiler API")
 
+# Allow browser dashboard access; keep origins open for demo, tighten in prod.
+app.add_middleware(
+    __import__("fastapi.middleware.cors", fromlist=["CORSMiddleware"]).CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
 cfg = load_config()
 health_cfg = load_health_config()
 safety_cfg = load_safety_config()

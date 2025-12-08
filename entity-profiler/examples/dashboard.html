@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Entity Profiler Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 16px; background: #0b1220; color: #e7ecf5; }
+    h1 { margin-bottom: 8px; }
+    .controls { margin-bottom: 12px; }
+    input { padding: 6px; margin-right: 6px; }
+    button { padding: 6px 10px; cursor: pointer; }
+    table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+    th, td { border: 1px solid #2a3550; padding: 6px; font-size: 13px; }
+    th { background: #1c2740; }
+    tr:nth-child(even) { background: #11182a; }
+    .severity-info { color: #8ab4f8; }
+    .severity-warning { color: #f2c14e; }
+    .severity-critical { color: #f47373; }
+  </style>
+</head>
+<body>
+  <h1>Entity Profiler Dashboard</h1>
+  <div class="controls">
+    <label>API URL <input id="apiUrl" size="40" value="http://localhost:8000" /></label>
+    <label>Bearer Token <input id="token" size="40" placeholder="optional" /></label>
+    <label>API Key <input id="apiKey" size="20" placeholder="optional" /></label>
+    <button onclick="refreshAll()">Refresh</button>
+  </div>
+  <div id="status"></div>
+  <h3>Health Events</h3>
+  <table id="healthTable">
+    <thead><tr><th>Time</th><th>Entity</th><th>Type</th><th>Severity</th><th>Description</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <h3>Safety Events</h3>
+  <table id="safetyTable">
+    <thead><tr><th>Time</th><th>Entity</th><th>Type</th><th>Severity</th><th>Description</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <script>
+    function headers() {
+      const h = { 'Accept': 'application/json' };
+      const t = document.getElementById('token').value.trim();
+      const k = document.getElementById('apiKey').value.trim();
+      if (t) h['Authorization'] = 'Bearer ' + t;
+      if (k) h['X-Api-Key'] = k;
+      return h;
+    }
+    function fmt(ts) {
+      const d = new Date(ts * 1000);
+      return d.toISOString();
+    }
+    function render(tableId, events) {
+      const tbody = document.querySelector(`#${tableId} tbody`);
+      tbody.innerHTML = '';
+      events.slice().reverse().forEach(ev => {
+        const tr = document.createElement('tr');
+        const sevClass = 'severity-' + (ev.severity || 'info');
+        tr.innerHTML = `<td>${fmt(ev.timestamp)}</td><td>${ev.entity_id||''}</td><td>${ev.type||''}</td><td class="${sevClass}">${ev.severity||''}</td><td>${ev.description||''}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+    async function fetchEvents(path) {
+      const api = document.getElementById('apiUrl').value.replace(/\/$/, '');
+      const res = await fetch(api + path, { headers: headers() });
+      if (!res.ok) throw new Error(`${path} ${res.status}`);
+      return res.json();
+    }
+    async function refreshAll() {
+      const status = document.getElementById('status');
+      status.textContent = 'Loading...';
+      try {
+        const [health, safety] = await Promise.all([
+          fetchEvents('/health/events'),
+          fetchEvents('/safety/events')
+        ]);
+        render('healthTable', health || []);
+        render('safetyTable', safety || []);
+        status.textContent = 'OK';
+      } catch (e) {
+        status.textContent = 'Error: ' + e.message;
+      }
+    }
+    refreshAll();
+    setInterval(refreshAll, 10000);
+  </script>
+</body>
+</html>

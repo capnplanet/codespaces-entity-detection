@@ -22,7 +22,7 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
    - Night-time activity above a threshold
    - Low mobility (gait speed proxy below a threshold)
    - (You can extend rules in `health/` as needed.)
-- Sends events to configurable notifiers (log file or webhook) and exposes recent events at `/health/events` and `/safety/events`.
+- Sends events to configurable notifiers (log file or webhook), exposes recent events at `/health/events` and `/safety/events`, and appends all events to `data/interim/events.ndjson`.
 - Persists events to `data/interim/events.ndjson` for quick inspection/retention.
 
 ## Quickstart (GitHub Codespaces)
@@ -47,16 +47,18 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
 - If your device exposes RTSP, you can extract still frames with `ffmpeg` and post them the same way; the profiling and safety logic remains the same.
 - A helper script `examples/rtsp_snapshot_to_ingest.sh` shows how to grab one frame via `ffmpeg` and `curl` it to `/ingest_frame`.
 - A simple puller `examples/rtsp_puller.py` can loop on an RTSP stream and post snapshots every few seconds; configure with `RTSP_URL`, `API_URL`, `CAMERA_ID`, `EP_API_TOKEN`.
+- A lightweight dashboard `examples/dashboard.html` fetches recent health/safety events; open it in a browser and set your API URL and token/key.
 
 ### API authentication
 
-- Set an environment variable `EP_API_TOKEN` before running the API to require `Authorization: Bearer <token>` on all endpoints.
+- Set `EP_API_TOKEN` to require `Authorization: Bearer <token>` on all endpoints. Optionally set `EP_API_KEYS` to a comma-separated list of API keys accepted via `X-Api-Key` header.
 
 ### Wearable biometrics (optional)
 
 - Send heart-rate/SpO2 samples to `/ingest_wearable` as JSON: `[ {"device_id": "fitbit_123", "timestamp": 1719945600.0, "heart_rate": 120, "spo2": 94} ]`.
 - Map devices to entities in `data/health_config.json` under `wearables` and tune thresholds (`hr_high`, `hr_low`, `spo2_low`, windows).
 - Health events will include wearable-derived alerts (elevated HR while idle, low SpO2) and flow through the same notifiers.
+- A helper `examples/fitbit_pull.py` shows how to pull recent heart-rate data from the Fitbit Web API and forward to `/ingest_wearable`; set `FITBIT_ACCESS_TOKEN`, `FITBIT_USER_ID`, `API_URL`, `DEVICE_ID`.
 
 ### CLI utilities
 
