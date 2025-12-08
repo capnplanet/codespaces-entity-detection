@@ -6,7 +6,7 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
 
 ## What it does (today)
 
-- Detects people (OpenCV HOG+SVM + NMS) and, if you provide an ONNX pose model, estimates pose; otherwise it skips pose gracefully.
+- Detects people with an ONNX detector if you supply `models/detector.onnx`; otherwise it falls back to OpenCV HOG+SVM + NMS. Pose is estimated if you supply `models/pose_estimator.onnx`; otherwise it skips gracefully.
 - Computes lightweight features per detection:
    - Soft biometrics (bbox height, aspect ratio, area)
    - Clothing color/texture histograms
@@ -21,6 +21,8 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
    - No recent activity beyond a threshold
    - Night-time activity above a threshold
    - Low mobility (gait speed proxy below a threshold)
+   - Fall heuristics (rapid height drop + aspect change)
+   - High activity bursts in a window
    - (You can extend rules in `health/` as needed.)
 - Sends events to configurable notifiers (log file or webhook), exposes recent events at `/health/events` and `/safety/events`, and appends all events to `data/interim/events.ndjson`.
 - Real-time stream available at `/events/stream` (SSE); use dashboard or a client to subscribe.

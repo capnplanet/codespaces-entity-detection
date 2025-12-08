@@ -16,5 +16,11 @@
   "spo2_low": 92,
   "wearable_window_seconds": 900,
   "wearable_idle_grace_seconds": 600,
-  "wearables": []
+  "wearables": [],
+  "fall_height_drop_ratio": 0.35,
+  "fall_aspect_ratio_increase": 1.8,
+  "fall_area_increase": 0.25,
+  "fall_time_window_seconds": 4.0,
+  "activity_window_seconds": 900,
+  "high_activity_count_threshold": 8
 }

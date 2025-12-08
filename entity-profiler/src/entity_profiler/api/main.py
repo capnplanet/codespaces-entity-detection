@@ -10,6 +10,10 @@ from pydantic import BaseModel
 
 from ..config import load_config, load_health_config, load_safety_config, Paths
 from ..vision.detection import PersonDetector
+try:
+    from ..vision.detector_onnx import OnnxPersonDetector
+except Exception:  # pragma: no cover - optional dependency
+    OnnxPersonDetector = None
 from ..vision.pose_estimation import PoseEstimator
 from ..vision.soft_biometrics import compute_soft_biometrics
 from ..vision.clothing_features import extract_clothing_features
@@ -42,7 +46,14 @@ safety_cfg = load_safety_config()
 paths = Paths()
 store = EntityStore()
 cluster_engine = EntityClusteringEngine(store)
-detector = PersonDetector()
+if OnnxPersonDetector is not None:
+    _onnx_detector = OnnxPersonDetector()
+    if getattr(_onnx_detector, "_runtime_available", False):
+        detector = _onnx_detector
+    else:
+        detector = PersonDetector()
+else:
+    detector = PersonDetector()
 pose_estimator = PoseEstimator()
 wearable_buffer = WearableBuffer()
 health_notifiers = build_notifiers(

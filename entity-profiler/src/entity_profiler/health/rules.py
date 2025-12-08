@@ -1,28 +1,12 @@
-from dataclasses import dataclass
-from typing import List, Dict, Any
+from typing import List
 import time
 
 from ..config import HealthConfig
 from ..profiling.entity_store import EntityStore, EntityProfile
 from .metrics import last_seen_seconds, presence_histograms, gait_speed_stats
 from .wearables import WearableBuffer
-
-
-@dataclass
-class HealthEvent:
-    entity_id: str
-    severity: str  # info|warning|critical
-    type: str
-    description: str
-    timestamp: float
-    context: Dict[str, Any]
-
-
-_SEVERITY_ORDER = {"info": 0, "warning": 1, "critical": 2}
-
-
-def _severity_allows(emitted: str, minimum: str) -> bool:
-    return _SEVERITY_ORDER.get(emitted, 0) >= _SEVERITY_ORDER.get(minimum, 0)
+from .fall_activity import fall_and_activity_events
+from .events import HealthEvent, severity_allows
 
 
 def evaluate_health_events(store: EntityStore, cfg: HealthConfig, now_ts: float | None = None) -> List[HealthEvent]:
@@ -44,7 +28,7 @@ def evaluate_health_events(store: EntityStore, cfg: HealthConfig, now_ts: float 
                 timestamp=now_ts,
                 context={"idle_seconds": idle_seconds},
             )
-            if _severity_allows(ev.severity, cfg.notify_min_severity):
+            if severity_allows(ev.severity, cfg.notify_min_severity):
                 events.append(ev)
 
         # Rule: night-time activity above threshold
@@ -60,7 +44,7 @@ def evaluate_health_events(store: EntityStore, cfg: HealthConfig, now_ts: float 
                 timestamp=now_ts,
                 context={"night_count": night_count, "window": (night_start, night_end)},
             )
-            if _severity_allows(ev.severity, cfg.notify_min_severity):
+            if severity_allows(ev.severity, cfg.notify_min_severity):
                 events.append(ev)
 
         # Rule: low mobility
@@ -74,7 +58,7 @@ def evaluate_health_events(store: EntityStore, cfg: HealthConfig, now_ts: float 
                 timestamp=now_ts,
                 context={"speed_mean": speed_mean, "threshold": cfg.low_mobility_speed_threshold},
             )
-            if _severity_allows(ev.severity, cfg.notify_min_severity):
+            if severity_allows(ev.severity, cfg.notify_min_severity):
                 events.append(ev)
 
     return events
@@ -97,9 +81,6 @@ def evaluate_health_events_with_wearables(
 ) -> List[HealthEvent]:
     now_ts = time.time() if now_ts is None else now_ts
     base_events = evaluate_health_events(store, cfg, now_ts=now_ts)
-    if wearable_buffer is None:
-        return base_events
-
     enriched: List[HealthEvent] = list(base_events)
     window = cfg.wearable_window_seconds
     idle_grace = cfg.wearable_idle_grace_seconds
@@ -108,8 +89,11 @@ def evaluate_health_events_with_wearables(
         if not profile.observations:
             continue
 
+        # add fall/activity heuristics regardless of wearable presence
+        enriched.extend(fall_and_activity_events(profile, cfg, now_ts))
+
         device_id = _matching_wearable_device(cfg, profile)
-        if not device_id:
+        if not device_id or wearable_buffer is None:
             continue
 
         samples = wearable_buffer.query(device_id, now_ts - window, now_ts)
@@ -132,7 +116,7 @@ def evaluate_health_events_with_wearables(
                     timestamp=now_ts,
                     context={"hr_mean": hr_mean, "idle_seconds": idle_seconds, "device_id": device_id},
                 )
-                if _severity_allows(ev.severity, cfg.notify_min_severity):
+                if severity_allows(ev.severity, cfg.notify_min_severity):
                     enriched.append(ev)
 
             if hr_mean <= cfg.hr_low:
@@ -144,7 +128,7 @@ def evaluate_health_events_with_wearables(
                     timestamp=now_ts,
                     context={"hr_mean": hr_mean, "device_id": device_id},
                 )
-                if _severity_allows(ev.severity, cfg.notify_min_severity):
+                if severity_allows(ev.severity, cfg.notify_min_severity):
                     enriched.append(ev)
 
         if spo2_vals:
@@ -158,7 +142,7 @@ def evaluate_health_events_with_wearables(
                     timestamp=now_ts,
                     context={"spo2_min": spo2_min, "device_id": device_id},
                 )
-                if _severity_allows(ev.severity, cfg.notify_min_severity):
+                if severity_allows(ev.severity, cfg.notify_min_severity):
                     enriched.append(ev)
 
     return enriched

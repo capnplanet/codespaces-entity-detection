@@ -57,6 +57,12 @@ class HealthConfig:
     wearable_window_seconds: float = 900.0
     wearable_idle_grace_seconds: float = 600.0
     wearables: tuple = ()  # iterable of {device_id, entity_id?, slot?, notes?}
+    fall_height_drop_ratio: float = 0.35  # new_height / old_height <= ratio
+    fall_aspect_ratio_increase: float = 1.8  # aspect goes from tall to wide
+    fall_area_increase: float = 0.25  # relative area increase allowed
+    fall_time_window_seconds: float = 4.0
+    activity_window_seconds: float = 900.0
+    high_activity_count_threshold: int = 8
 
 
 @dataclass
@@ -106,6 +112,12 @@ def load_health_config(paths: Paths | None = None) -> HealthConfig:
         wearable_window_seconds=float(payload.get("wearable_window_seconds", 900.0)),
         wearable_idle_grace_seconds=float(payload.get("wearable_idle_grace_seconds", 600.0)),
         wearables=tuple(payload.get("wearables", ())),
+        fall_height_drop_ratio=float(payload.get("fall_height_drop_ratio", 0.35)),
+        fall_aspect_ratio_increase=float(payload.get("fall_aspect_ratio_increase", 1.8)),
+        fall_area_increase=float(payload.get("fall_area_increase", 0.25)),
+        fall_time_window_seconds=float(payload.get("fall_time_window_seconds", 4.0)),
+        activity_window_seconds=float(payload.get("activity_window_seconds", 900.0)),
+        high_activity_count_threshold=int(payload.get("high_activity_count_threshold", 8)),
     )
 
 
