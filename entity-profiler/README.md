@@ -114,6 +114,24 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
 
 - **Pose (optional):** Place an ONNX pose model at `models/pose_estimator.onnx`. If the file is absent or the ONNX runtime is unavailable, the pipeline skips pose and returns empty pose lists without failing. A lightweight COCO-17 single-person model is recommended for CPU use; the same interface will work with GPU-enabled ONNX Runtime when you swap providers in deployment.
 
+## AI Components (deterministic vs model-backed)
+
+- Person detection: OpenCV HOG+SVM by default (CPU, deterministic). If `models/detector.onnx` exists and ONNX Runtime is available, an ONNX detector is used instead; filtering and thresholds are fixed in this repo.
+- Pose estimation (optional): If `models/pose_estimator.onnx` exists, poses are estimated from crops; otherwise pose is skipped gracefully.
+- Features (deterministic):
+   - Soft biometrics (bbox height, aspect, area)
+   - Clothing color/texture histograms
+   - Gait features from poses (normalized joints; simple speed proxy)
+- Fusion (deterministic): Concatenate gait + soft biometrics + clothing into one embedding.
+- Tracking & association (deterministic): Cosine-similarity tracker keeps steady IDs within a camera stream; profiles updated by nearest-centroid assignment with a distance threshold.
+- Rules & alerts (deterministic): Health and safety checks (idle, night activity, low mobility; quiet-hours, lingering, bursts). Fall signals include a heuristic change check and a simple weighted fall score with a threshold. Alerts include `event_id`, `severity`, time, and context.
+- Wearables (optional): Heart-rate/SpO2 checks when present; vision-only remains fully functional.
+
+Tuning knobs and reproducibility:
+- Configs: `data/health_config.json`, `data/safety_config.json` (thresholds, windows, areas, notifiers).
+- Env: `EP_USE_ONNX_DETECTOR`, `EP_TRACKER_SIM_THRESHOLD`, `EP_TRACKER_MAX_AGE_SECONDS`, `EP_GLOBAL_SEED`.
+- Models: Place ONNX files under `models/`; the pipeline degrades gracefully if absent.
+
 ## Project layout
 
 - `src/entity_profiler`: core library code
