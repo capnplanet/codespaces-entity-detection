@@ -3,6 +3,7 @@ import asyncio
 import json
 import time
 import uuid
+from collections import deque
 
 import cv2
 import numpy as np
@@ -17,7 +18,7 @@ try:
     from ..vision.detector_onnx import OnnxPersonDetector
 except Exception:  # pragma: no cover - optional dependency
     OnnxPersonDetector = None
-from ..vision.pose_estimation import PoseEstimator
+from ..vision.pose_estimation import PoseEstimator, Pose
 from ..vision.soft_biometrics import compute_soft_biometrics
 from ..vision.clothing_features import extract_clothing_features
 from ..vision.tracking import CosineTracker
@@ -82,6 +83,10 @@ _recent_safety_events: List[dict] = []
 _recent_wearable_events: List[dict] = []
 _event_queue: asyncio.Queue[dict] = asyncio.Queue()
 _event_status: dict[str, dict] = {}
+
+# Rolling pose buffers per track for multi-frame gait sequences.
+_GAIT_SEQUENCE_MAX_FRAMES = 16
+_gait_pose_buffers: dict[int, deque[Pose]] = {}
 
 
 def _profile_camera(entity_id: str) -> str | None:
@@ -177,18 +182,34 @@ async def ingest_frame(
     det_payloads = []
     for det in detections:
         poses = pose_estimator.estimate(img, [det.bbox], frame_index=0)
-        pose_seq = GaitSequence(entity_id=None, poses=poses)
         soft_vec = compute_soft_biometrics(det.bbox)
         clothing_desc = extract_clothing_features(img, det.bbox)
-        fused = fuse_features(pose_seq, soft_vec, clothing_desc)
-        det_payloads.append((det, fused))
+        # For tracking we keep the original per-frame gait sequence behaviour.
+        per_frame_seq = GaitSequence(entity_id=None, poses=poses)
+        fused_for_tracker = fuse_features(per_frame_seq, soft_vec, clothing_desc)
+        det_payloads.append((det, poses, soft_vec, clothing_desc, fused_for_tracker))
 
-    # Update tracker using fused embeddings for continuity
-    det_tuples = [(d.bbox[0], d.bbox[1], d.bbox[2], d.bbox[3], d.score) for d, _ in det_payloads]
-    det_embs = [f.as_array() for _, f in det_payloads]
+    # Update tracker using per-frame fused embeddings for continuity
+    det_tuples = [
+        (d.bbox[0], d.bbox[1], d.bbox[2], d.bbox[3], d.score) for d, _, _, _, _ in det_payloads
+    ]
+    det_embs = [f.as_array() for _, _, _, _, f in det_payloads]
     tracks = tracker.update(det_tuples, det_embs, frame_index=0, now_ts=timestamp)
 
-    for (det, fused), track in zip(det_payloads, tracks):
+    # Drop pose buffers for tracks that are no longer active.
+    active_ids = {t.track_id for t in tracks}
+    for track_id in list(_gait_pose_buffers.keys()):
+        if track_id not in active_ids:
+            _gait_pose_buffers.pop(track_id, None)
+
+    for (det, poses, soft_vec, clothing_desc, _), track in zip(det_payloads, tracks):
+        # Extend the rolling pose buffer for this track.
+        buf = _gait_pose_buffers.setdefault(track.track_id, deque(maxlen=_GAIT_SEQUENCE_MAX_FRAMES))
+        for p in poses or []:
+            buf.append(p)
+        seq = GaitSequence(entity_id=None, poses=list(buf))
+        fused = fuse_features(seq, soft_vec, clothing_desc)
+
         profile = cluster_engine.assign_observation(
             timestamp=timestamp, camera_id=camera_id, fused=fused
         )

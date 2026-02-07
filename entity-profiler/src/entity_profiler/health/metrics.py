@@ -3,6 +3,7 @@ from typing import Dict, Tuple
 import numpy as np
 
 from ..profiling.entity_store import EntityProfile
+from ..gait.gait_features import gait_speed_mean, gait_speed_std
 
 
 def last_seen_seconds(profile: EntityProfile, now_ts: float) -> float:
@@ -25,13 +26,18 @@ def presence_histograms(profile: EntityProfile) -> Tuple[Dict[str, int], Dict[in
 def gait_speed_stats(profile: EntityProfile) -> Tuple[float, float]:
     """Approximate gait speed from fused gait feature if present.
 
-    gait_feature_from_sequence encodes speed_mean at index 4 and speed_std at index 5.
+    Uses helper accessors from gait_features to avoid hard-coded indices and
+    to remain resilient to future layout extensions.
     """
+
     speeds = []
     for obs in profile.observations:
         g = obs.fused_features.gait
-        if g.size >= 6:
-            speeds.append(float(g[4]))
+        if g is None or g.size == 0:
+            continue
+        s = gait_speed_mean(g)
+        if s > 0.0:
+            speeds.append(s)
     if not speeds:
         return 0.0, 0.0
     arr = np.array(speeds, dtype=np.float32)

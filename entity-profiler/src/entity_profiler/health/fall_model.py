@@ -4,6 +4,7 @@ import math
 from .events import HealthEvent, severity_allows
 from ..profiling.entity_store import EntityProfile
 from ..config import HealthConfig
+from ..gait.gait_features import gait_speed_mean
 
 
 def _recent_observations(profile: EntityProfile, k: int = 3):
@@ -19,9 +20,9 @@ def _soft_metrics(obs) -> tuple:
 
 def _gait_speed(obs) -> float:
     gait = obs.fused_features.gait
-    if gait is None or len(gait) < 6:
+    if gait is None or len(gait) == 0:
         return 0.0
-    return float(gait[4])  # speed_mean
+    return gait_speed_mean(gait)
 
 
 def fall_model_events(profile: EntityProfile, cfg: HealthConfig, now_ts: float) -> List[HealthEvent]:
