@@ -10,6 +10,8 @@ class Detection:
     frame_index: int
     bbox: Tuple[int, int, int, int]  # x, y, w, h
     score: float
+    class_id: int | None = None
+    class_name: str | None = None
 
 
 class PersonDetector:

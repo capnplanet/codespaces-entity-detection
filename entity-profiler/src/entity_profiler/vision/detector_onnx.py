@@ -18,6 +18,8 @@ class Detection:
     frame_index: int
     bbox: Tuple[int, int, int, int]  # x, y, w, h
     score: float
+    class_id: int | None = None
+    class_name: str | None = None
 
 
 class OnnxPersonDetector:
@@ -68,9 +70,8 @@ class OnnxPersonDetector:
             x1, y1, x2, y2, score, cls = row[:6]
             if score < self.score_threshold:
                 continue
-            # only keep person class (assume 0) if available
-            if cls not in (0, 0.0, 0.0):
-                continue
+            # keep all classes but mark them; downstream can filter if desired
+            class_id = int(cls)
             # map back to image coords
             x1 = (x1 - left) / scale
             y1 = (y1 - top) / scale
@@ -82,7 +83,15 @@ class OnnxPersonDetector:
             y2 = max(0, min(h - 1, y2))
             bw = max(1, x2 - x1)
             bh = max(1, y2 - y1)
-            dets.append(Detection(frame_index=0, bbox=(int(x1), int(y1), int(bw), int(bh)), score=float(score)))
+            dets.append(
+                Detection(
+                    frame_index=0,
+                    bbox=(int(x1), int(y1), int(bw), int(bh)),
+                    score=float(score),
+                    class_id=class_id,
+                    class_name=None,
+                )
+            )
         dets.sort(key=lambda d: -d.score)
         return dets
 

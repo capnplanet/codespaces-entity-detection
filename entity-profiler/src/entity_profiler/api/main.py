@@ -11,6 +11,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
 from ..config import load_config, load_health_config, load_safety_config, Paths
+from ..camera.models import CameraRegistry
 from ..vision.detection import PersonDetector
 try:
     from ..vision.detector_onnx import OnnxPersonDetector
@@ -31,6 +32,8 @@ from ..health.wearables import WearableBuffer, WearableSample
 from ..safety.rules import evaluate_safety_events
 from ..utils.event_store import NDJSONEventStore
 from ..utils.auth import require_token, validate_token_or_key
+from ..utils.audit import NDJSONAuditLogger, build_audit_logger, make_audit_record
+from ..recording.index import RecordingIndex
 
 app = FastAPI(title="Entity Profiler API")
 
@@ -48,6 +51,7 @@ health_cfg = load_health_config()
 safety_cfg = load_safety_config()
 paths = Paths()
 store = EntityStore()
+camera_registry = CameraRegistry(paths.interim_dir / "camera_registry.json")
 cluster_engine = EntityClusteringEngine(store)
 if OnnxPersonDetector is not None and cfg.use_onnx_detector:
     _onnx_detector = OnnxPersonDetector()
@@ -67,6 +71,8 @@ safety_notifiers = build_notifiers(
     list(safety_cfg.notification_targets), paths.interim_dir / "safety_events.log"
 )
 event_store = NDJSONEventStore(paths.interim_dir / "events.ndjson")
+audit_logger = NDJSONAuditLogger(paths.interim_dir / "audit.ndjson")
+recording_index = RecordingIndex(paths.interim_dir / "recordings" / "index.ndjson")
 _recent_events: List[dict] = []  # in-memory buffer of recent events
 _recent_safety_events: List[dict] = []
 _recent_wearable_events: List[dict] = []
@@ -111,6 +117,40 @@ class EntityObservationResponse(BaseModel):
     num_observations: int
     profile_summary: dict
     track_id: int | None = None
+
+
+class SiteCreate(BaseModel):
+    name: str
+    timezone: str = "UTC"
+    metadata: dict[str, str] | None = None
+
+
+class SiteResponse(BaseModel):
+    site_id: str
+    name: str
+    timezone: str
+    metadata: dict[str, str] | None = None
+
+
+class CameraCreate(BaseModel):
+    site_id: str
+    name: str
+    rtsp_url: str | None = None
+    location: str | None = None
+    risk_level: str | None = None
+    enabled: bool = True
+    metadata: dict[str, str] | None = None
+
+
+class CameraResponse(BaseModel):
+    camera_id: str
+    site_id: str
+    name: str
+    rtsp_url: str | None = None
+    location: str | None = None
+    risk_level: str | None = None
+    enabled: bool
+    metadata: dict[str, str] | None = None
 
 
 @app.post("/ingest_frame", response_model=List[EntityObservationResponse])
@@ -193,6 +233,87 @@ def list_entities(_: None = Depends(require_token)):
     return [summarize_entity_pattern(p) for p in store.get_all_profiles()]
 
 
+@app.get("/sites", response_model=List[SiteResponse])
+def list_sites(_: None = Depends(require_token)):
+    """List all configured sites."""
+    sites = []
+    for s in camera_registry.list_sites():
+        sites.append(
+            SiteResponse(
+                site_id=s.site_id,
+                name=s.name,
+                timezone=s.timezone,
+                metadata=s.metadata or {},
+            )
+        )
+    return sites
+
+
+@app.post("/sites", response_model=SiteResponse)
+def create_site(payload: SiteCreate, _: None = Depends(require_token)):
+    site = camera_registry.create_site(
+        name=payload.name,
+        timezone=payload.timezone,
+        metadata=payload.metadata or {},
+    )
+    return SiteResponse(
+        site_id=site.site_id,
+        name=site.name,
+        timezone=site.timezone,
+        metadata=site.metadata or {},
+    )
+
+
+@app.get("/cameras", response_model=List[CameraResponse])
+def list_cameras(site_id: str | None = None, _: None = Depends(require_token)):
+    """List cameras, optionally filtered by site."""
+    if site_id:
+        cams = camera_registry.list_cameras_for_site(site_id)
+    else:
+        cams = camera_registry.list_cameras()
+    results: List[CameraResponse] = []
+    for c in cams:
+        results.append(
+            CameraResponse(
+                camera_id=c.camera_id,
+                site_id=c.site_id,
+                name=c.name,
+                rtsp_url=c.rtsp_url,
+                location=c.location,
+                risk_level=c.risk_level,
+                enabled=c.enabled,
+                metadata=c.metadata or {},
+            )
+        )
+    return results
+
+
+@app.post("/cameras", response_model=CameraResponse)
+def create_camera(payload: CameraCreate, _: None = Depends(require_token)):
+    try:
+        cam = camera_registry.create_camera(
+            site_id=payload.site_id,
+            name=payload.name,
+            rtsp_url=payload.rtsp_url,
+            location=payload.location,
+            risk_level=payload.risk_level,
+            enabled=payload.enabled,
+            metadata=payload.metadata or {},
+        )
+    except KeyError:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="site not found")
+    return CameraResponse(
+        camera_id=cam.camera_id,
+        site_id=cam.site_id,
+        name=cam.name,
+        rtsp_url=cam.rtsp_url,
+        location=cam.location,
+        risk_level=cam.risk_level,
+        enabled=cam.enabled,
+        metadata=cam.metadata or {},
+    )
+
+
 @app.get("/health/events")
 def list_health_events(severity: str | None = None, _: None = Depends(require_token)):
     """List recent health events observed in this process."""
@@ -258,9 +379,64 @@ def ingest_wearable(samples: List[WearableIngest], _: None = Depends(require_tok
     return {"accepted": len(to_store)}
 
 
+@app.get("/events/{event_id}/recording")
+def get_event_recording(event_id: str, _: None = Depends(require_token)):
+    """Best-effort lookup of a recording segment for a given event.
+
+    Scans the NDJSON event store for the event_id, then queries the recording
+    index for a segment around the event timestamp.
+    """
+
+    # Find event in NDJSON store
+    ev_data = None
+    try:
+        path = event_store.path  # type: ignore[attr-defined]
+    except AttributeError:
+        path = paths.interim_dir / "events.ndjson"
+
+    if path.exists():
+        with open(path, "r", encoding="utf-8") as f:
+            for line in f:
+                try:
+                    data = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if data.get("event_id") == event_id:
+                    ev_data = data
+                    break
+
+    if not ev_data:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="event not found")
+
+    camera_id = ev_data.get("camera_id")
+    ts = ev_data.get("timestamp") or ev_data.get("emitted_at")
+    if not camera_id or ts is None:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="event missing camera_id/timestamp")
+
+    clip = recording_index.find_best_segment_for_event(str(camera_id), float(ts))
+    if not clip:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="no recording segment found")
+    return clip
+
+
 @app.post("/events/ack")
 def ack_event(payload: EventAck, _: None = Depends(require_token)):
     if payload.status not in {"open", "acknowledged", "resolved"}:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="invalid status")
-    _event_status[payload.event_id] = {"status": payload.status, "updated_at": time.time()}
+    now = time.time()
+    _event_status[payload.event_id] = {"status": payload.status, "updated_at": now}
+
+    # Minimal audit record for status changes
+    record = make_audit_record(
+        actor="api_client",
+        action="event_status_update",
+        resource=payload.event_id,
+        details={"status": payload.status, "timestamp": now},
+    )
+    try:
+        audit_logger.append(record)
+    except Exception:
+        # Audit failures must not break main control flow
+        pass
+
     return {"event_id": payload.event_id, "status": payload.status}
