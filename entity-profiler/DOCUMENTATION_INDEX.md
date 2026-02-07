@@ -85,13 +85,15 @@ A complete, in-depth analysis of all platform capabilities, organized as request
 ## 📁 Additional Documentation Files
 
 ### Repository Documentation
-- **[README.md](README.md)** - Quickstart guide and overview
-- **[docs/system_architecture.md](docs/system_architecture.md)** - High-level architecture
-- **[docs/pattern_of_life.md](docs/pattern_of_life.md)** - Behavioral pattern analysis
-- **[docs/profiling_pipeline.md](docs/profiling_pipeline.md)** - Processing pipeline details
-- **[docs/data_model.md](docs/data_model.md)** - Data structures
-- **[docs/determinism_and_reproducibility.md](docs/determinism_and_reproducibility.md)** - Deterministic behavior
-- **[docs/examples.md](docs/examples.md)** - Usage examples
+- **[README.md](README.md)** - Quickstart guide, current API surfaces, and high-level capabilities
+- **[docs/system_architecture.md](docs/system_architecture.md)** - End-to-end architecture including API, camera registry, wearables, events, and deployment
+- **[docs/pattern_of_life.md](docs/pattern_of_life.md)** - Behavioral pattern analysis and how summaries are used by rules
+- **[docs/profiling_pipeline.md](docs/profiling_pipeline.md)** - Processing pipeline from ingest through tracking, clustering, and rules
+- **[docs/data_model.md](docs/data_model.md)** - Core data structures (observations, profiles, events, wearables, cameras, users)
+- **[docs/determinism_and_reproducibility.md](docs/determinism_and_reproducibility.md)** - Deterministic behavior, seeding, and non-deterministic boundaries
+- **[docs/examples.md](docs/examples.md)** - API, RTSP, wearable, and dashboard examples
+- **[docs/state_of_the_art_and_comparison.md](docs/state_of_the_art_and_comparison.md)** - Positioning relative to VMS and multimodal health monitoring
+- **[docs/use_cases_and_impact.md](docs/use_cases_and_impact.md)** - Example deployment scenarios and impact framing
 
 ### Example Scripts
 - **[examples/api_usage.md](examples/api_usage.md)** - API usage examples

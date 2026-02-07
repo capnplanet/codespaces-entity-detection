@@ -1,6 +1,6 @@
 # Use Cases and Impact
 
-This document describes example deployment scenarios for Entity Profiler and how its capabilities map to practical defense and commercial use cases.
+This document describes example deployment scenarios for Entity Profiler and how its capabilities map to practical defense and commercial use cases, given the current API, eventing, and configuration surfaces.
 
 ## 1. Home and Residential Elder Care
 
@@ -15,7 +15,8 @@ This document describes example deployment scenarios for Entity Profiler and how
 - Fall heuristics and fall model (vision-based) using soft biometrics and gait dynamics.
 - No-recent-activity and low-mobility health rules.
 - Night-activity thresholds and pattern-of-life histograms by hour of day.
-- Optional wearable HR/SpO2 integration for elevated-HR-while-idle and low-SpO2 alerts.
+- Optional wearable HR/SpO2 integration for elevated-HR-while-idle and low-SpO2 alerts via `/ingest_wearable`.
+- NDJSON event and audit logs for post-hoc review or downstream analytics.
 
 ## 2. Small Clinics and Field Triage Tents
 
@@ -27,10 +28,11 @@ This document describes example deployment scenarios for Entity Profiler and how
 - Provide clinicians or medics with event streams that can be integrated into existing dashboards.
 
 **Relevant capabilities**:
-- Vision-based fall and activity rules configured per area.
-- Burst-activity and lingering rules tied to specific cameras and risk tags.
+- Vision-based fall and activity rules configured per area and camera via `data/health_config.json` and `data/safety_config.json`.
+- Burst-activity and lingering rules tied to specific cameras and risk tags using the camera registry.
 - Wearable integration to highlight physiological anomalies in combination with visual inactivity.
 - Real-time event streaming and webhooks suitable for integration into existing C2/clinical dashboards.
+- Lightweight recording index allowing mapping between events and stored media when a recorder is integrated.
 
 ## 3. Workshops, Depots, and Light Industrial Facilities
 
@@ -46,6 +48,7 @@ This document describes example deployment scenarios for Entity Profiler and how
 - Linger detection based on span of observations per camera.
 - Burst-activity rules over recent windows.
 - Pattern-of-life analysis to distinguish routine behavior from anomalies.
+- Role-aware API (viewer vs. admin) for camera registry management when role enforcement is enabled.
 
 ## 4. Monitoring in Temporary or Resource-Constrained Environments
 
@@ -57,10 +60,11 @@ This document describes example deployment scenarios for Entity Profiler and how
 - Maintain clear audit trails of emitted alerts.
 
 **Relevant capabilities**:
-- CPU-friendly HOG-based detection and deterministic feature pipeline.
+- CPU-friendly HOG-based detection and deterministic feature pipeline, with optional ONNX acceleration when available.
 - Configurable rules that can be tuned for each site without retraining models.
 - Append-only NDJSON event store and log/webhook notifications.
 - Simple deployment via Docker Compose or Kubernetes manifests.
+- Portable configuration in JSON and environment variables for site-specific tuning.
 
 ## 5. Complementing Existing VMS and Security Operations
 
@@ -73,14 +77,16 @@ This document describes example deployment scenarios for Entity Profiler and how
 
 **Relevant capabilities**:
 - REST API for frame ingest that can be fed from the existing VMS or an intermediate service.
+- REST API for wearable ingest when body-worn devices are present.
 - Webhook notifications and SSE event streams into external systems.
 - Pseudonymous entity IDs and per-entity patterns that can be cross-referenced with existing identity systems if policy allows.
+- Basic users/roles and audit logging for API access when environment variables are configured.
 
 ## 6. Impact Considerations
 
 Entity Profiler is not a turnkey product; it is a research and prototyping framework. Its impact derives from:
 - Demonstrating how deterministic, pseudonymous analytics can be composed into explainable safety and health monitoring workflows.
 - Showing how low-resolution cameras and commodity wearables can be fused without requiring face recognition or heavy models.
-- Providing a concrete, auditable reference implementation that integrators can adapt or embed into larger platforms.
+- Providing a concrete, auditable reference implementation (API + CLI + NDJSON logs) that integrators can adapt or embed into larger platforms.
 
-Future documentation will add more quantitative impact estimates (e.g., reduction in operator load or false alarms) once evaluation and benchmarking scripts are fully wired into this repository.
+Future documentation will add more quantitative impact estimates (e.g., reduction in operator load or false alarms) once evaluation and benchmarking scripts under evaluation/ are fully wired into this repository and run on representative datasets.

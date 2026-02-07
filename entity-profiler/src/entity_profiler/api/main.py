@@ -31,9 +31,11 @@ from ..health.notifications import build_notifiers
 from ..health.wearables import WearableBuffer, WearableSample
 from ..safety.rules import evaluate_safety_events
 from ..utils.event_store import NDJSONEventStore
-from ..utils.auth import require_token, validate_token_or_key
+from ..utils.auth import require_token, validate_token_or_key, require_role
+from ..security.models import RoleName
 from ..utils.audit import NDJSONAuditLogger, build_audit_logger, make_audit_record
 from ..recording.index import RecordingIndex
+from . import users as users_router
 
 app = FastAPI(title="Entity Profiler API")
 
@@ -45,6 +47,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+app.include_router(users_router.router)
 
 cfg = load_config()
 health_cfg = load_health_config()
@@ -251,6 +255,8 @@ def list_sites(_: None = Depends(require_token)):
 
 @app.post("/sites", response_model=SiteResponse)
 def create_site(payload: SiteCreate, _: None = Depends(require_token)):
+    # In future, require admin role once identity binding is available.
+    require_role(RoleName.ADMIN)
     site = camera_registry.create_site(
         name=payload.name,
         timezone=payload.timezone,
@@ -290,6 +296,8 @@ def list_cameras(site_id: str | None = None, _: None = Depends(require_token)):
 
 @app.post("/cameras", response_model=CameraResponse)
 def create_camera(payload: CameraCreate, _: None = Depends(require_token)):
+    # In future, require operator or admin role.
+    require_role(RoleName.OPERATOR)
     try:
         cam = camera_registry.create_camera(
             site_id=payload.site_id,

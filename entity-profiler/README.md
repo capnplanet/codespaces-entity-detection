@@ -35,6 +35,12 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
    ```bash
    pip install -e .
    ```
+   On Linux, OpenCV also requires a system GL library. If you see an error
+   like `ImportError: libGL.so.1: cannot open shared object file`, install
+   `libgl1` (or your distro's equivalent), for example:
+   ```bash
+   sudo apt-get update && sudo apt-get install -y libgl1
+   ```
 3. Run the API:
    ```bash
    uvicorn entity_profiler.api.main:app --host 0.0.0.0 --port 8000 --reload
