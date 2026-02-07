@@ -138,32 +138,45 @@ The system follows a deterministic processing pipeline:
 
 **Implementation Details**:
 
-**Input**: `GaitSequence` containing list of `Pose` objects over time.
+**Input**: `GaitSequence` containing a list of `Pose` objects over time, typically drawn from a rolling buffer of recent poses per track.
 
-**Feature Extraction Process**:
+**Base Feature Extraction Process** (first 10 dimensions, v1 layout — preserved for backward compatibility):
 1. **Normalization**:
-   - Stacks all pose joints from sequence: (num_frames, 17, 2)
-   - Computes mean torso length: ||shoulder_center - hip_center||
-   - Normalizes all joint positions by torso length (scale-invariant)
+  - Stacks all pose joints from sequence: (num_frames, 17, 2)
+  - Computes mean torso length: ||shoulder_joint - hip_joint|| across frames
+  - Normalizes all joint positions by mean torso length (scale-invariant for distance).
 
 2. **Statistical Features**:
-   - Mean x-coordinate across all joints and frames
-   - Mean y-coordinate across all joints and frames
-   - Standard deviation of x-coordinates (horizontal movement variability)
-   - Standard deviation of y-coordinates (vertical movement variability)
+  - Mean x-coordinate across all joints and frames
+  - Mean y-coordinate across all joints and frames
+  - Standard deviation of x-coordinates (horizontal movement variability)
+  - Standard deviation of y-coordinates (vertical movement variability)
 
 3. **Velocity Features**:
-   - Computes frame-to-frame joint position differences (velocity vectors)
-   - Calculates speed per frame: mean ||velocity|| across all joints
-   - Mean speed across sequence (gait speed proxy)
-   - Standard deviation of speed (movement consistency)
+  - Computes frame-to-frame joint position differences (velocity vectors)
+  - Calculates speed per frame: mean ||velocity|| across all joints
+  - Mean speed across sequence (gait speed proxy)
+  - Standard deviation of speed (movement consistency)
 
 4. **Metadata**:
-   - Sequence length (number of poses)
-   - Torso length (scale factor)
-   - Two reserved dimensions (currently zeros for future expansion)
+  - Sequence length (number of poses in the original sequence)
+  - Torso length (scale factor in pixels)
+  - Two reserved dimensions (currently zeros, maintained for layout stability)
 
-**Output**: 10-dimensional float32 vector.
+**Extended Deterministic Descriptors** (additional 8 dimensions, v2 layout):
+- **Knee angle statistics**:
+  - Mean and standard deviation of left knee angle over valid frames
+  - Mean and standard deviation of right knee angle
+- **Asymmetry indicator**:
+  - Absolute difference between left and right mean knee angles
+- **Vertical ankle displacement statistics**:
+  - Mean and standard deviation of frame-to-frame vertical ankle displacement across both ankles
+- **Coverage indicator**:
+  - Effective number of frames contributing usable knee angle measurements
+
+All extended descriptors are computed deterministically from normalized joint coordinates and appended after the original 10 dimensions, so existing rules/thresholds that only depend on `speed_mean` and `speed_std` continue to behave identically.
+
+**Output**: 18-dimensional float32 vector (10 historical dimensions + 8 enriched descriptors).
 
 **Gait Speed Interpretation**:
 - Index 4 (speed_mean): Primary mobility indicator
@@ -174,14 +187,16 @@ The system follows a deterministic processing pipeline:
 **Predictive Quality for Health Monitoring**:
 - **Low Mobility Detection**: Persistent low speed_mean across observations indicates reduced mobility
 - **Movement Patterns**: Speed consistency (low speed_std) suggests regular gait
+- **Additional cues**: Knee angle variability and vertical ankle displacement can highlight irregular or highly asymmetric gait patterns.
 - **Limitations**: 
   - Requires pose estimation (optional component)
   - Sensitive to camera angle and occlusion
   - Best for frontal/side views with clear joint visibility
-  - Returns zero vector if no poses available
+  - Returns zero vector if no valid poses are available
 
 **Predictive Quality for Re-identification**:
 - Gait patterns are individually distinctive over short time periods
+- Enriched descriptors (angles, asymmetry, ankle motion) strengthen the movement signature without leaving the deterministic, hand-engineered regime
 - Affected by footwear, terrain, health status, and intentional gait modification
 - Combined with other features for entity clustering
 
@@ -193,12 +208,12 @@ The system follows a deterministic processing pipeline:
 
 **Implementation**:
 - **Input Features**:
-  1. Gait: 10 dimensions (from pose sequences)
+  1. Gait: 18 dimensions (10 base statistics + 8 enriched descriptors)
   2. Soft Biometrics: 3 dimensions (height, aspect, area)
   3. Clothing: 80 dimensions (color + texture histograms)
   
 - **Fusion Method**: Simple concatenation
-- **Output**: `FusedFeatures` with 93-dimensional float32 vector
+- **Output**: `FusedFeatures` with 101-dimensional float32 vector when pose and clothing features are available; shorter when pose or clothing is unavailable (gait falls back to zeros, clothing to a smaller descriptor).
 
 **Design Rationale**:
 - Concatenation preserves all information without learned weights

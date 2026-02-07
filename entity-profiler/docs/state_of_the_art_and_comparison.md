@@ -48,7 +48,7 @@ Recent research has explored multimodal stress and health monitoring using facia
 
 Entity Profiler differs in several respects:
 - It is **engineered for low-resolution, privacy-preserving cameras** that do not support detailed facial analysis.
-- It uses **simple, deterministic feature engineering** (gait speed proxies, posture heuristics, soft biometrics, clothing histograms) and explicit rules instead of complex learned classifiers.
+- It uses **simple, deterministic feature engineering** (multi-frame gait descriptors including speed, knee angles, asymmetry, posture heuristics, soft biometrics, clothing histograms) and explicit rules instead of complex learned classifiers.
 - Wearable integration is designed as a configurable rule layer (elevated HR while idle, low SpO2) rather than as a black-box model.
 - It explicitly separates **model-backed detection/pose components** (optional ONNX models) from downstream logic, keeping all profiling, clustering, and rule evaluation deterministic and inspectable.
 - The emphasis is on **operational interpretability and auditability** over maximizing classification accuracy on benchmark datasets.

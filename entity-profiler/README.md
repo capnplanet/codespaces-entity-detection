@@ -10,7 +10,7 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
 - Computes lightweight features per detection:
    - Soft biometrics (bbox height, aspect ratio, area)
    - Clothing color/texture histograms
-   - Simple gait features (from pose, if available)
+   - Multi-frame gait features (from pose, if available), including a gait speed proxy plus simple angle/asymmetry and ankle-motion descriptors
 - Fuses features and clusters them into pseudonymous entities (no real identities).
 - Summarizes pattern of life (camera usage, hour-of-day histogram, span of observations).
 - Evaluates **safety rules** on each ingest (or in batch) using `data/safety_config.json`, emitting events for:
@@ -127,7 +127,7 @@ Safety monitoring built on deterministic movement profiling for low-resolution, 
 - Features (deterministic):
    - Soft biometrics (bbox height, aspect, area)
    - Clothing color/texture histograms
-   - Gait features from poses (normalized joints; simple speed proxy)
+   - Gait features from buffered pose sequences (normalized joints; speed proxy plus simple joint-angle and ankle-motion descriptors)
 - Fusion (deterministic): Concatenate gait + soft biometrics + clothing into one embedding.
 - Tracking & association (deterministic): Cosine-similarity tracker keeps steady IDs within a camera stream; profiles updated by nearest-centroid assignment with a distance threshold.
 - Rules & alerts (deterministic): Health and safety checks (idle, night activity, low mobility; quiet-hours, lingering, bursts). Fall signals include a heuristic change check and a simple weighted fall score with a threshold. Alerts include `event_id`, `severity`, time, and context.

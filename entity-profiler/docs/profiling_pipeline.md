@@ -11,8 +11,8 @@ This document describes the core profiling pipeline as it exists today. For full
 3. **Estimate pose (optional)** for each detection when a pose model is present at `models/pose_estimator.onnx`; otherwise pose lists are empty and downstream components degrade gracefully.
 4. **Compute soft biometrics** from the bounding box (height, aspect ratio, area).
 5. **Extract clothing descriptors** from the cropped patch (HSV color histogram + gradient‑based texture histogram).
-6. **Build gait features (optional)** from recent pose sequences to derive a gait speed proxy and related mobility signals.
-7. **Fuse features** into a unified 93‑dimensional vector by concatenating gait, soft biometrics, and clothing features.
+6. **Build gait features (optional)** from recent multi-frame pose sequences maintained per track, deriving a gait speed proxy plus additional deterministic descriptors (knee angle statistics, asymmetry, and vertical ankle displacement).
+7. **Fuse features** into a unified vector (currently 101 dimensions when all modalities are present) by concatenating gait, soft biometrics, and clothing features.
 
 ## 2. Tracking and Entity Profiling
 

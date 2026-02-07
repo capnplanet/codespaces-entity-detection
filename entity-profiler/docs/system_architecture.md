@@ -16,8 +16,8 @@ This document summarizes how the current repository is wired end‑to‑end. It 
 	- Optional pose estimation via ONNX model.
 	- Soft biometrics and clothing descriptors per detection.
 - **Gait and feature fusion** (gait.gait_features, features.fusion)
-	- Gait sequences and mobility proxy features.
-	- 93‑dimensional fused embeddings combining gait, soft biometrics, and clothing.
+	- Multi-frame gait sequences buffered per track with mobility proxies and enriched deterministic descriptors (knee angles, asymmetry, ankle displacement).
+	- Fused embeddings combining gait, soft biometrics, and clothing (currently 101 dimensions when all modalities are present).
 - **Tracking and entity profiling** (vision.tracking, profiling.*)
 	- Cosine‑similarity tracker for within‑camera track IDs.
 	- Entity clustering across time/cameras and pattern‑of‑life summaries.
