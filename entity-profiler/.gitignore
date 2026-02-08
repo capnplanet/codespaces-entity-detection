@@ -15,3 +15,8 @@ build/
 .pyre/
 .DS_Store
 .vscode/
+
+# Large external datasets and download logs (kept local, not in git)
+data/raw/physionet.org/
+data/raw/weizmann/
+wget-log
