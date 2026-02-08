@@ -19,4 +19,5 @@ build/
 # Large external datasets and download logs (kept local, not in git)
 data/raw/physionet.org/
 data/raw/weizmann/
+data/raw/coco2017/
 wget-log
