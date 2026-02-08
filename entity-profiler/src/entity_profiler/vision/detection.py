@@ -87,7 +87,12 @@ class PersonDetector:
         )
 
         boxes = [(int(x), int(y), int(w), int(h)) for (x, y, w, h) in rects]
-        scores = [float(s) if s is not None else 0.0 for s in (weights or [])]
+        # OpenCV may return weights as an empty tuple or a NumPy array; normalize
+        # to a flat Python list for downstream use.
+        if weights is None:
+            scores = [0.0] * len(boxes)
+        else:
+            scores = [float(s) for s in list(weights)]
         keep = self._nms(boxes, scores, self._nms_threshold)
 
         detections = [

@@ -1,0 +1,5 @@
+{
+  "observations_path": "evaluation/examples/fall_observations_synth.jsonl",
+  "labels_path": "evaluation/examples/fall_labels_synth.jsonl",
+  "health_config_path": "evaluation/configs/health_fall_synth.json"
+}

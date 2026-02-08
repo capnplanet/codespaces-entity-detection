@@ -1,0 +1,5 @@
+{
+  "dataset_index": "evaluation/indexes/mot17_train_detection.jsonl",
+  "detector_type": "hog",
+  "iou_threshold": 0.5
+}

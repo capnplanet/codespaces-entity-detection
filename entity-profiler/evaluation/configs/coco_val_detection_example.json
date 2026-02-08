@@ -1,0 +1,5 @@
+{
+  "dataset_index": "evaluation/indexes/coco_val2017_person.jsonl",
+  "detector_type": "hog",
+  "iou_threshold": 0.5
+}

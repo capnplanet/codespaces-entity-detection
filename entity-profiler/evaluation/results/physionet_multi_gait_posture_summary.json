@@ -1,0 +1,2585 @@
+{
+  "num_sequences": 367,
+  "num_participants": 14,
+  "frames": {
+    "mean": 502.41961852861033,
+    "min": 45,
+    "max": 1184
+  },
+  "pelvis_path_length": {
+    "mean": 732.6885375976562,
+    "min": 39.892921447753906,
+    "max": 1816.905029296875
+  },
+  "sequences": [
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_left_0.3",
+      "corridor": "participant00_left_0.3_corner1",
+      "num_frames": 724,
+      "pelvis_path_length": 812.5504150390625
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_left_0.3",
+      "corridor": "participant00_left_0.3_corner2",
+      "num_frames": 588,
+      "pelvis_path_length": 642.330078125
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_left_0.3",
+      "corridor": "participant00_left_0.3_corner3",
+      "num_frames": 1151,
+      "pelvis_path_length": 801.55908203125
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_left_0.5",
+      "corridor": "participant00_left_0.5_corner1",
+      "num_frames": 403,
+      "pelvis_path_length": 606.63916015625
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_left_0.5",
+      "corridor": "participant00_left_0.5_corner2",
+      "num_frames": 336,
+      "pelvis_path_length": 482.5288391113281
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_left_0.5",
+      "corridor": "participant00_left_0.5_corner3",
+      "num_frames": 375,
+      "pelvis_path_length": 539.71923828125
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_left_0.7",
+      "corridor": "participant00_left_0.7_corner1",
+      "num_frames": 345,
+      "pelvis_path_length": 545.675537109375
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_left_0.7",
+      "corridor": "participant00_left_0.7_corner2",
+      "num_frames": 249,
+      "pelvis_path_length": 394.1695861816406
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_left_0.7",
+      "corridor": "participant00_left_0.7_corner3",
+      "num_frames": 273,
+      "pelvis_path_length": 448.60394287109375
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_right_0.3",
+      "corridor": "participant00_right_0.3_corner1",
+      "num_frames": 744,
+      "pelvis_path_length": 915.2159423828125
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_right_0.3",
+      "corridor": "participant00_right_0.3_corner2",
+      "num_frames": 705,
+      "pelvis_path_length": 793.0072021484375
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_right_0.3",
+      "corridor": "participant00_right_0.3_corner3",
+      "num_frames": 697,
+      "pelvis_path_length": 812.799072265625
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_right_0.5",
+      "corridor": "participant00_right_0.5_corner1",
+      "num_frames": 389,
+      "pelvis_path_length": 587.9845581054688
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_right_0.5",
+      "corridor": "participant00_right_0.5_corner2",
+      "num_frames": 350,
+      "pelvis_path_length": 433.22674560546875
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_right_0.5",
+      "corridor": "participant00_right_0.5_corner3",
+      "num_frames": 408,
+      "pelvis_path_length": 539.2224731445312
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_right_0.7",
+      "corridor": "participant00_right_0.7_corner1",
+      "num_frames": 306,
+      "pelvis_path_length": 504.60162353515625
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_right_0.7",
+      "corridor": "participant00_right_0.7_corner2",
+      "num_frames": 308,
+      "pelvis_path_length": 448.9927978515625
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_right_0.7",
+      "corridor": "participant00_right_0.7_corner3",
+      "num_frames": 340,
+      "pelvis_path_length": 516.9887084960938
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_straight_0.3",
+      "corridor": "participant00_straight_0.3_corridor1",
+      "num_frames": 947,
+      "pelvis_path_length": 1073.738037109375
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_straight_0.3",
+      "corridor": "participant00_straight_0.3_corridor2",
+      "num_frames": 1061,
+      "pelvis_path_length": 1223.730712890625
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_straight_0.3",
+      "corridor": "participant00_straight_0.3_corridor3",
+      "num_frames": 1088,
+      "pelvis_path_length": 1266.368408203125
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_straight_0.5",
+      "corridor": "participant00_straight_0.5_corridor1",
+      "num_frames": 592,
+      "pelvis_path_length": 854.586181640625
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_straight_0.5",
+      "corridor": "participant00_straight_0.5_corridor2",
+      "num_frames": 624,
+      "pelvis_path_length": 852.3287963867188
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_straight_0.5",
+      "corridor": "participant00_straight_0.5_corridor3",
+      "num_frames": 637,
+      "pelvis_path_length": 917.8883666992188
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_straight_0.7",
+      "corridor": "participant00_straight_0.7_corridor1",
+      "num_frames": 415,
+      "pelvis_path_length": 708.26416015625
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_straight_0.7",
+      "corridor": "participant00_straight_0.7_corridor2",
+      "num_frames": 436,
+      "pelvis_path_length": 694.984375
+    },
+    {
+      "participant_id": "participant00",
+      "condition": "participant00_straight_0.7",
+      "corridor": "participant00_straight_0.7_corridor3",
+      "num_frames": 417,
+      "pelvis_path_length": 639.7334594726562
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_left_0.3",
+      "corridor": "participant01_left_0.3_corner1",
+      "num_frames": 646,
+      "pelvis_path_length": 700.927734375
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_left_0.3",
+      "corridor": "participant01_left_0.3_corner2",
+      "num_frames": 574,
+      "pelvis_path_length": 603.8480224609375
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_left_0.3",
+      "corridor": "participant01_left_0.3_corner3",
+      "num_frames": 617,
+      "pelvis_path_length": 757.853515625
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_left_0.5",
+      "corridor": "participant01_left_0.5_corner1",
+      "num_frames": 361,
+      "pelvis_path_length": 574.0966186523438
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_left_0.5",
+      "corridor": "participant01_left_0.5_corner2",
+      "num_frames": 336,
+      "pelvis_path_length": 548.263671875
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_left_0.5",
+      "corridor": "participant01_left_0.5_corner3",
+      "num_frames": 307,
+      "pelvis_path_length": 489.2601318359375
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_left_0.7",
+      "corridor": "participant01_left_0.7_corner1",
+      "num_frames": 293,
+      "pelvis_path_length": 567.93798828125
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_left_0.7",
+      "corridor": "participant01_left_0.7_corner2",
+      "num_frames": 272,
+      "pelvis_path_length": 479.503173828125
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_left_0.7",
+      "corridor": "participant01_left_0.7_corner3",
+      "num_frames": 254,
+      "pelvis_path_length": 455.58270263671875
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_right_0.3",
+      "corridor": "participant01_right_0.3_corner1",
+      "num_frames": 714,
+      "pelvis_path_length": 786.5892333984375
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_right_0.3",
+      "corridor": "participant01_right_0.3_corner2",
+      "num_frames": 532,
+      "pelvis_path_length": 572.9540405273438
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_right_0.3",
+      "corridor": "participant01_right_0.3_corner3",
+      "num_frames": 581,
+      "pelvis_path_length": 773.77392578125
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_right_0.5",
+      "corridor": "participant01_right_0.5_corner1",
+      "num_frames": 394,
+      "pelvis_path_length": 628.2908935546875
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_right_0.5",
+      "corridor": "participant01_right_0.5_corner2",
+      "num_frames": 276,
+      "pelvis_path_length": 455.06854248046875
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_right_0.5",
+      "corridor": "participant01_right_0.5_corner3",
+      "num_frames": 362,
+      "pelvis_path_length": 623.3234252929688
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_right_0.7",
+      "corridor": "participant01_right_0.7_corner1",
+      "num_frames": 320,
+      "pelvis_path_length": 503.4365234375
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_right_0.7",
+      "corridor": "participant01_right_0.7_corner2",
+      "num_frames": 227,
+      "pelvis_path_length": 424.0134582519531
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_right_0.7",
+      "corridor": "participant01_right_0.7_corner3",
+      "num_frames": 286,
+      "pelvis_path_length": 523.1829833984375
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_straight_0.3",
+      "corridor": "participant01_straight_0.3_corridor1",
+      "num_frames": 45,
+      "pelvis_path_length": 39.892921447753906
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_straight_0.3",
+      "corridor": "participant01_straight_0.3_corridor2",
+      "num_frames": 991,
+      "pelvis_path_length": 1134.880859375
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_straight_0.3",
+      "corridor": "participant01_straight_0.3_corridor3",
+      "num_frames": 1082,
+      "pelvis_path_length": 1180.3671875
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_straight_0.5",
+      "corridor": "participant01_straight_0.5_corridor1",
+      "num_frames": 612,
+      "pelvis_path_length": 901.9673461914062
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_straight_0.5",
+      "corridor": "participant01_straight_0.5_corridor2",
+      "num_frames": 590,
+      "pelvis_path_length": 935.4844970703125
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_straight_0.5",
+      "corridor": "participant01_straight_0.5_corridor3",
+      "num_frames": 619,
+      "pelvis_path_length": 985.3184204101562
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_straight_0.7",
+      "corridor": "participant01_straight_0.7_corridor1",
+      "num_frames": 424,
+      "pelvis_path_length": 844.0983276367188
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_straight_0.7",
+      "corridor": "participant01_straight_0.7_corridor2",
+      "num_frames": 425,
+      "pelvis_path_length": 866.6874389648438
+    },
+    {
+      "participant_id": "participant01",
+      "condition": "participant01_straight_0.7",
+      "corridor": "participant01_straight_0.7_corridor3",
+      "num_frames": 421,
+      "pelvis_path_length": 841.1796264648438
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_left_0.3",
+      "corridor": "participant02_left_0.3_corner1",
+      "num_frames": 695,
+      "pelvis_path_length": 1025.732421875
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_left_0.3",
+      "corridor": "participant02_left_0.3_corner2",
+      "num_frames": 557,
+      "pelvis_path_length": 825.4924926757812
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_left_0.3",
+      "corridor": "participant02_left_0.3_corner3",
+      "num_frames": 693,
+      "pelvis_path_length": 1083.3580322265625
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_left_0.5",
+      "corridor": "participant02_left_0.5_corner1",
+      "num_frames": 408,
+      "pelvis_path_length": 877.9898681640625
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_left_0.5",
+      "corridor": "participant02_left_0.5_corner2",
+      "num_frames": 348,
+      "pelvis_path_length": 615.6539306640625
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_left_0.5",
+      "corridor": "participant02_left_0.5_corner3",
+      "num_frames": 395,
+      "pelvis_path_length": 717.9813232421875
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_left_0.7",
+      "corridor": "participant02_left_0.7_corner1",
+      "num_frames": 371,
+      "pelvis_path_length": 656.3416137695312
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_left_0.7",
+      "corridor": "participant02_left_0.7_corner2",
+      "num_frames": 277,
+      "pelvis_path_length": 462.2508544921875
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_left_0.7",
+      "corridor": "participant02_left_0.7_corner3",
+      "num_frames": 316,
+      "pelvis_path_length": 577.5753173828125
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_right_0.3",
+      "corridor": "participant02_right_0.3_corner1",
+      "num_frames": 667,
+      "pelvis_path_length": 948.3472900390625
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_right_0.3",
+      "corridor": "participant02_right_0.3_corner2",
+      "num_frames": 607,
+      "pelvis_path_length": 905.9414672851562
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_right_0.3",
+      "corridor": "participant02_right_0.3_corner3",
+      "num_frames": 652,
+      "pelvis_path_length": 993.4182739257812
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_right_0.5",
+      "corridor": "participant02_right_0.5_corner1",
+      "num_frames": 403,
+      "pelvis_path_length": 745.42138671875
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_right_0.5",
+      "corridor": "participant02_right_0.5_corner2",
+      "num_frames": 387,
+      "pelvis_path_length": 609.4178466796875
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_right_0.5",
+      "corridor": "participant02_right_0.5_corner3",
+      "num_frames": 407,
+      "pelvis_path_length": 627.267333984375
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_right_0.7",
+      "corridor": "participant02_right_0.7_corner1",
+      "num_frames": 372,
+      "pelvis_path_length": 613.6953735351562
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_right_0.7",
+      "corridor": "participant02_right_0.7_corner2",
+      "num_frames": 289,
+      "pelvis_path_length": 474.12103271484375
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_right_0.7",
+      "corridor": "participant02_right_0.7_corner3",
+      "num_frames": 298,
+      "pelvis_path_length": 497.37347412109375
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_straight_0.3",
+      "corridor": "participant02_straight_0.3_corridor1",
+      "num_frames": 956,
+      "pelvis_path_length": 1379.489501953125
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_straight_0.3",
+      "corridor": "participant02_straight_0.3_corridor2",
+      "num_frames": 984,
+      "pelvis_path_length": 1265.28271484375
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_straight_0.3",
+      "corridor": "participant02_straight_0.3_corridor3",
+      "num_frames": 999,
+      "pelvis_path_length": 1513.4710693359375
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_straight_0.5",
+      "corridor": "participant02_straight_0.5_corridor1",
+      "num_frames": 582,
+      "pelvis_path_length": 1004.1339721679688
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_straight_0.5",
+      "corridor": "participant02_straight_0.5_corridor2",
+      "num_frames": 568,
+      "pelvis_path_length": 978.1361083984375
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_straight_0.5",
+      "corridor": "participant02_straight_0.5_corridor3",
+      "num_frames": 620,
+      "pelvis_path_length": 993.7042846679688
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_straight_0.7",
+      "corridor": "participant02_straight_0.7_corridor1",
+      "num_frames": 424,
+      "pelvis_path_length": 707.4640502929688
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_straight_0.7",
+      "corridor": "participant02_straight_0.7_corridor2",
+      "num_frames": 437,
+      "pelvis_path_length": 855.607666015625
+    },
+    {
+      "participant_id": "participant02",
+      "condition": "participant02_straight_0.7",
+      "corridor": "participant02_straight_0.7_corridor3",
+      "num_frames": 426,
+      "pelvis_path_length": 734.1334228515625
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_left_0.3",
+      "corridor": "participant03_left_0.3_corner1",
+      "num_frames": 606,
+      "pelvis_path_length": 915.3253173828125
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_left_0.3",
+      "corridor": "participant03_left_0.3_corner2",
+      "num_frames": 607,
+      "pelvis_path_length": 891.5047607421875
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_left_0.3",
+      "corridor": "participant03_left_0.3_corner3",
+      "num_frames": 554,
+      "pelvis_path_length": 749.0899047851562
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_left_0.5",
+      "corridor": "participant03_left_0.5_corner1",
+      "num_frames": 377,
+      "pelvis_path_length": 662.1162719726562
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_left_0.5",
+      "corridor": "participant03_left_0.5_corner2",
+      "num_frames": 310,
+      "pelvis_path_length": 494.1954650878906
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_left_0.5",
+      "corridor": "participant03_left_0.5_corner3",
+      "num_frames": 322,
+      "pelvis_path_length": 571.8789672851562
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_left_0.7",
+      "corridor": "participant03_left_0.7_corner1",
+      "num_frames": 288,
+      "pelvis_path_length": 574.3133544921875
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_left_0.7",
+      "corridor": "participant03_left_0.7_corner2",
+      "num_frames": 243,
+      "pelvis_path_length": 456.4405517578125
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_left_0.7",
+      "corridor": "participant03_left_0.7_corner3",
+      "num_frames": 263,
+      "pelvis_path_length": 511.47705078125
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_right_0.3",
+      "corridor": "participant03_right_0.3_corner1",
+      "num_frames": 665,
+      "pelvis_path_length": 1050.80810546875
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_right_0.3",
+      "corridor": "participant03_right_0.3_corner2",
+      "num_frames": 511,
+      "pelvis_path_length": 634.313232421875
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_right_0.3",
+      "corridor": "participant03_right_0.3_corner3",
+      "num_frames": 607,
+      "pelvis_path_length": 874.947998046875
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_right_0.5",
+      "corridor": "participant03_right_0.5_corner1",
+      "num_frames": 422,
+      "pelvis_path_length": 744.03564453125
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_right_0.5",
+      "corridor": "participant03_right_0.5_corner2",
+      "num_frames": 343,
+      "pelvis_path_length": 642.1856079101562
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_right_0.5",
+      "corridor": "participant03_right_0.5_corner3",
+      "num_frames": 400,
+      "pelvis_path_length": 694.2393188476562
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_right_0.7",
+      "corridor": "participant03_right_0.7_corner1",
+      "num_frames": 267,
+      "pelvis_path_length": 572.45068359375
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_right_0.7",
+      "corridor": "participant03_right_0.7_corner2",
+      "num_frames": 226,
+      "pelvis_path_length": 485.042236328125
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_right_0.7",
+      "corridor": "participant03_right_0.7_corner3",
+      "num_frames": 279,
+      "pelvis_path_length": 580.9474487304688
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_straight_0.3",
+      "corridor": "participant03_straight_0.3_corridor1",
+      "num_frames": 966,
+      "pelvis_path_length": 1300.91845703125
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_straight_0.3",
+      "corridor": "participant03_straight_0.3_corridor2",
+      "num_frames": 923,
+      "pelvis_path_length": 1163.351318359375
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_straight_0.3",
+      "corridor": "participant03_straight_0.3_corridor3",
+      "num_frames": 973,
+      "pelvis_path_length": 1205.20263671875
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_straight_0.5",
+      "corridor": "participant03_straight_0.5_corridor1",
+      "num_frames": 566,
+      "pelvis_path_length": 1072.501708984375
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_straight_0.5",
+      "corridor": "participant03_straight_0.5_corridor2",
+      "num_frames": 566,
+      "pelvis_path_length": 1004.978759765625
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_straight_0.5",
+      "corridor": "participant03_straight_0.5_corridor3",
+      "num_frames": 582,
+      "pelvis_path_length": 1087.482421875
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_straight_0.7",
+      "corridor": "participant03_straight_0.7_corridor1",
+      "num_frames": 417,
+      "pelvis_path_length": 864.7908325195312
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_straight_0.7",
+      "corridor": "participant03_straight_0.7_corridor2",
+      "num_frames": 411,
+      "pelvis_path_length": 899.1644897460938
+    },
+    {
+      "participant_id": "participant03",
+      "condition": "participant03_straight_0.7",
+      "corridor": "participant03_straight_0.7_corridor3",
+      "num_frames": 413,
+      "pelvis_path_length": 907.2402954101562
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_left_0.3",
+      "corridor": "participant04_left_0.3_corner1",
+      "num_frames": 579,
+      "pelvis_path_length": 864.4448852539062
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_left_0.3",
+      "corridor": "participant04_left_0.3_corner2",
+      "num_frames": 625,
+      "pelvis_path_length": 847.38916015625
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_left_0.3",
+      "corridor": "participant04_left_0.3_corner3",
+      "num_frames": 482,
+      "pelvis_path_length": 649.2901611328125
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_left_0.5",
+      "corridor": "participant04_left_0.5_corner1",
+      "num_frames": 340,
+      "pelvis_path_length": 676.2031860351562
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_left_0.5",
+      "corridor": "participant04_left_0.5_corner2",
+      "num_frames": 340,
+      "pelvis_path_length": 662.2520751953125
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_left_0.5",
+      "corridor": "participant04_left_0.5_corner3",
+      "num_frames": 275,
+      "pelvis_path_length": 509.90960693359375
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_left_0.7",
+      "corridor": "participant04_left_0.7_corner1",
+      "num_frames": 296,
+      "pelvis_path_length": 744.4461669921875
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_left_0.7",
+      "corridor": "participant04_left_0.7_corner2",
+      "num_frames": 303,
+      "pelvis_path_length": 674.1235961914062
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_left_0.7",
+      "corridor": "participant04_left_0.7_corner3",
+      "num_frames": 221,
+      "pelvis_path_length": 485.17987060546875
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_right_0.3",
+      "corridor": "participant04_right_0.3_corner1",
+      "num_frames": 654,
+      "pelvis_path_length": 842.1912231445312
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_right_0.3",
+      "corridor": "participant04_right_0.3_corner2",
+      "num_frames": 504,
+      "pelvis_path_length": 667.0547485351562
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_right_0.3",
+      "corridor": "participant04_right_0.3_corner3",
+      "num_frames": 589,
+      "pelvis_path_length": 756.9449462890625
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_right_0.5",
+      "corridor": "participant04_right_0.5_corner1",
+      "num_frames": 411,
+      "pelvis_path_length": 765.76318359375
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_right_0.5",
+      "corridor": "participant04_right_0.5_corner2",
+      "num_frames": 314,
+      "pelvis_path_length": 577.7937622070312
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_right_0.5",
+      "corridor": "participant04_right_0.5_corner3",
+      "num_frames": 354,
+      "pelvis_path_length": 597.396484375
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_right_0.7",
+      "corridor": "participant04_right_0.7_corner1",
+      "num_frames": 305,
+      "pelvis_path_length": 729.446533203125
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_right_0.7",
+      "corridor": "participant04_right_0.7_corner2",
+      "num_frames": 249,
+      "pelvis_path_length": 526.8544311523438
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_right_0.7",
+      "corridor": "participant04_right_0.7_corner3",
+      "num_frames": 262,
+      "pelvis_path_length": 641.9070434570312
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_straight_0.3",
+      "corridor": "participant04_straight_0.3_corridor1",
+      "num_frames": 1018,
+      "pelvis_path_length": 1372.651123046875
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_straight_0.3",
+      "corridor": "participant04_straight_0.3_corridor2",
+      "num_frames": 955,
+      "pelvis_path_length": 1142.1375732421875
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_straight_0.3",
+      "corridor": "participant04_straight_0.3_corridor3",
+      "num_frames": 975,
+      "pelvis_path_length": 1203.7373046875
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_straight_0.5",
+      "corridor": "participant04_straight_0.5_corridor1",
+      "num_frames": 555,
+      "pelvis_path_length": 1075.112060546875
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_straight_0.5",
+      "corridor": "participant04_straight_0.5_corridor2",
+      "num_frames": 550,
+      "pelvis_path_length": 1158.731201171875
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_straight_0.5",
+      "corridor": "participant04_straight_0.5_corridor3",
+      "num_frames": 593,
+      "pelvis_path_length": 1093.1826171875
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_straight_0.7",
+      "corridor": "participant04_straight_0.7_corridor1",
+      "num_frames": 424,
+      "pelvis_path_length": 1099.446533203125
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_straight_0.7",
+      "corridor": "participant04_straight_0.7_corridor2",
+      "num_frames": 421,
+      "pelvis_path_length": 1023.71484375
+    },
+    {
+      "participant_id": "participant04",
+      "condition": "participant04_straight_0.7",
+      "corridor": "participant04_straight_0.7_corridor3",
+      "num_frames": 417,
+      "pelvis_path_length": 1051.490966796875
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_left_0.3",
+      "corridor": "participant05_left_0.3_corner2",
+      "num_frames": 541,
+      "pelvis_path_length": 674.6217041015625
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_left_0.3",
+      "corridor": "participant05_left_0.3_corner3",
+      "num_frames": 684,
+      "pelvis_path_length": 782.9840087890625
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_left_0.5",
+      "corridor": "participant05_left_0.5_corner1",
+      "num_frames": 371,
+      "pelvis_path_length": 559.3624267578125
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_left_0.5",
+      "corridor": "participant05_left_0.5_corner2",
+      "num_frames": 344,
+      "pelvis_path_length": 534.1094970703125
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_left_0.5",
+      "corridor": "participant05_left_0.5_corner3",
+      "num_frames": 426,
+      "pelvis_path_length": 610.4844970703125
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_left_0.7",
+      "corridor": "participant05_left_0.7_corner1",
+      "num_frames": 299,
+      "pelvis_path_length": 518.941650390625
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_left_0.7",
+      "corridor": "participant05_left_0.7_corner2",
+      "num_frames": 252,
+      "pelvis_path_length": 411.74298095703125
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_left_0.7",
+      "corridor": "participant05_left_0.7_corner3",
+      "num_frames": 331,
+      "pelvis_path_length": 563.0628051757812
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_right_0.3",
+      "corridor": "participant05_right_0.3_corner1",
+      "num_frames": 719,
+      "pelvis_path_length": 950.678955078125
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_right_0.3",
+      "corridor": "participant05_right_0.3_corner2",
+      "num_frames": 620,
+      "pelvis_path_length": 815.2489624023438
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_right_0.3",
+      "corridor": "participant05_right_0.3_corner3",
+      "num_frames": 620,
+      "pelvis_path_length": 866.6702880859375
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_right_0.5",
+      "corridor": "participant05_right_0.5_corner1",
+      "num_frames": 397,
+      "pelvis_path_length": 652.41015625
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_right_0.5",
+      "corridor": "participant05_right_0.5_corner2",
+      "num_frames": 389,
+      "pelvis_path_length": 548.2088012695312
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_right_0.5",
+      "corridor": "participant05_right_0.5_corner3",
+      "num_frames": 338,
+      "pelvis_path_length": 473.4698486328125
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_right_0.7",
+      "corridor": "participant05_right_0.7_corner1",
+      "num_frames": 351,
+      "pelvis_path_length": 587.0234985351562
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_right_0.7",
+      "corridor": "participant05_right_0.7_corner2",
+      "num_frames": 266,
+      "pelvis_path_length": 405.6529235839844
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_right_0.7",
+      "corridor": "participant05_right_0.7_corner3",
+      "num_frames": 358,
+      "pelvis_path_length": 480.6683044433594
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_straight_0.3",
+      "corridor": "participant05_straight_0.3_corridor1",
+      "num_frames": 970,
+      "pelvis_path_length": 1365.56884765625
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_straight_0.3",
+      "corridor": "participant05_straight_0.3_corridor2",
+      "num_frames": 984,
+      "pelvis_path_length": 1299.8681640625
+    },
+    {
+      "participant_id": "participant05",
+      "condition": "participant05_straight_0.3",
+      "corridor": "participant05_straight_0.3_corridor3",
+      "num_frames": 1010,
+      "pelvis_path_length": 1419.321533203125
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_left_0.3",
+      "corridor": "participant06_left_0.3_corner1",
+      "num_frames": 645,
+      "pelvis_path_length": 772.1423950195312
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_left_0.3",
+      "corridor": "participant06_left_0.3_corner2",
+      "num_frames": 543,
+      "pelvis_path_length": 640.1815185546875
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_left_0.3",
+      "corridor": "participant06_left_0.3_corner3",
+      "num_frames": 550,
+      "pelvis_path_length": 639.856201171875
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_left_0.5",
+      "corridor": "participant06_left_0.5_corner1",
+      "num_frames": 395,
+      "pelvis_path_length": 514.8900146484375
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_left_0.5",
+      "corridor": "participant06_left_0.5_corner2",
+      "num_frames": 315,
+      "pelvis_path_length": 425.4009094238281
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_left_0.5",
+      "corridor": "participant06_left_0.5_corner3",
+      "num_frames": 351,
+      "pelvis_path_length": 496.803466796875
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_left_0.7",
+      "corridor": "participant06_left_0.7_corner1",
+      "num_frames": 308,
+      "pelvis_path_length": 496.59228515625
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_left_0.7",
+      "corridor": "participant06_left_0.7_corner2",
+      "num_frames": 247,
+      "pelvis_path_length": 382.034912109375
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_left_0.7",
+      "corridor": "participant06_left_0.7_corner3",
+      "num_frames": 266,
+      "pelvis_path_length": 403.0521545410156
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_right_0.3",
+      "corridor": "participant06_right_0.3_corner1",
+      "num_frames": 880,
+      "pelvis_path_length": 839.4332275390625
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_right_0.3",
+      "corridor": "participant06_right_0.3_corner2",
+      "num_frames": 580,
+      "pelvis_path_length": 628.001708984375
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_right_0.3",
+      "corridor": "participant06_right_0.3_corner3",
+      "num_frames": 661,
+      "pelvis_path_length": 707.2316284179688
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_right_0.5",
+      "corridor": "participant06_right_0.5_corner1",
+      "num_frames": 408,
+      "pelvis_path_length": 562.437744140625
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_right_0.5",
+      "corridor": "participant06_right_0.5_corner2",
+      "num_frames": 407,
+      "pelvis_path_length": 639.37841796875
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_right_0.5",
+      "corridor": "participant06_right_0.5_corner3",
+      "num_frames": 402,
+      "pelvis_path_length": 538.9456176757812
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_right_0.7",
+      "corridor": "participant06_right_0.7_corner1",
+      "num_frames": 291,
+      "pelvis_path_length": 455.7308349609375
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_right_0.7",
+      "corridor": "participant06_right_0.7_corner2",
+      "num_frames": 242,
+      "pelvis_path_length": 380.5465393066406
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_right_0.7",
+      "corridor": "participant06_right_0.7_corner3",
+      "num_frames": 306,
+      "pelvis_path_length": 482.1778259277344
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_straight_0.3",
+      "corridor": "participant06_straight_0.3_corridor1",
+      "num_frames": 1184,
+      "pelvis_path_length": 1341.19775390625
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_straight_0.3",
+      "corridor": "participant06_straight_0.3_corridor2",
+      "num_frames": 972,
+      "pelvis_path_length": 1085.02783203125
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_straight_0.3",
+      "corridor": "participant06_straight_0.3_corridor3",
+      "num_frames": 1018,
+      "pelvis_path_length": 1011.3489990234375
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_straight_0.5",
+      "corridor": "participant06_straight_0.5_corridor1",
+      "num_frames": 572,
+      "pelvis_path_length": 816.8773193359375
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_straight_0.5",
+      "corridor": "participant06_straight_0.5_corridor2",
+      "num_frames": 588,
+      "pelvis_path_length": 815.700439453125
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_straight_0.5",
+      "corridor": "participant06_straight_0.5_corridor3",
+      "num_frames": 650,
+      "pelvis_path_length": 865.999755859375
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_straight_0.7",
+      "corridor": "participant06_straight_0.7_corridor1",
+      "num_frames": 409,
+      "pelvis_path_length": 688.71630859375
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_straight_0.7",
+      "corridor": "participant06_straight_0.7_corridor2",
+      "num_frames": 439,
+      "pelvis_path_length": 706.1422119140625
+    },
+    {
+      "participant_id": "participant06",
+      "condition": "participant06_straight_0.7",
+      "corridor": "participant06_straight_0.7_corridor3",
+      "num_frames": 435,
+      "pelvis_path_length": 687.86572265625
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_left_0.3",
+      "corridor": "participant07_left_0.3_corner1",
+      "num_frames": 659,
+      "pelvis_path_length": 827.9960327148438
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_left_0.3",
+      "corridor": "participant07_left_0.3_corner2",
+      "num_frames": 589,
+      "pelvis_path_length": 793.5938110351562
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_left_0.3",
+      "corridor": "participant07_left_0.3_corner3",
+      "num_frames": 518,
+      "pelvis_path_length": 761.380615234375
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_left_0.5",
+      "corridor": "participant07_left_0.5_corner1",
+      "num_frames": 352,
+      "pelvis_path_length": 638.5572509765625
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_left_0.5",
+      "corridor": "participant07_left_0.5_corner2",
+      "num_frames": 367,
+      "pelvis_path_length": 626.281982421875
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_left_0.5",
+      "corridor": "participant07_left_0.5_corner3",
+      "num_frames": 328,
+      "pelvis_path_length": 531.7211303710938
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_left_0.7",
+      "corridor": "participant07_left_0.7_corner1",
+      "num_frames": 272,
+      "pelvis_path_length": 570.1382446289062
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_left_0.7",
+      "corridor": "participant07_left_0.7_corner2",
+      "num_frames": 271,
+      "pelvis_path_length": 525.73291015625
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_left_0.7",
+      "corridor": "participant07_left_0.7_corner3",
+      "num_frames": 265,
+      "pelvis_path_length": 456.0384521484375
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_right_0.3",
+      "corridor": "participant07_right_0.3_corner1",
+      "num_frames": 661,
+      "pelvis_path_length": 844.77587890625
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_right_0.3",
+      "corridor": "participant07_right_0.3_corner2",
+      "num_frames": 932,
+      "pelvis_path_length": 776.772216796875
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_right_0.3",
+      "corridor": "participant07_right_0.3_corner3",
+      "num_frames": 568,
+      "pelvis_path_length": 824.0980834960938
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_right_0.5",
+      "corridor": "participant07_right_0.5_corner1",
+      "num_frames": 411,
+      "pelvis_path_length": 676.3739013671875
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_right_0.5",
+      "corridor": "participant07_right_0.5_corner2",
+      "num_frames": 289,
+      "pelvis_path_length": 442.64398193359375
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_right_0.5",
+      "corridor": "participant07_right_0.5_corner3",
+      "num_frames": 322,
+      "pelvis_path_length": 533.607421875
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_right_0.7",
+      "corridor": "participant07_right_0.7_corner1",
+      "num_frames": 322,
+      "pelvis_path_length": 674.7385864257812
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_right_0.7",
+      "corridor": "participant07_right_0.7_corner2",
+      "num_frames": 228,
+      "pelvis_path_length": 405.253662109375
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_right_0.7",
+      "corridor": "participant07_right_0.7_corner3",
+      "num_frames": 260,
+      "pelvis_path_length": 505.6994323730469
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_straight_0.3",
+      "corridor": "participant07_straight_0.3_corridor1",
+      "num_frames": 962,
+      "pelvis_path_length": 1259.420166015625
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_straight_0.3",
+      "corridor": "participant07_straight_0.3_corridor2",
+      "num_frames": 981,
+      "pelvis_path_length": 1266.03466796875
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_straight_0.3",
+      "corridor": "participant07_straight_0.3_corridor3",
+      "num_frames": 996,
+      "pelvis_path_length": 1389.0120849609375
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_straight_0.5",
+      "corridor": "participant07_straight_0.5_corridor1",
+      "num_frames": 566,
+      "pelvis_path_length": 955.3917236328125
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_straight_0.5",
+      "corridor": "participant07_straight_0.5_corridor2",
+      "num_frames": 574,
+      "pelvis_path_length": 924.5037841796875
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_straight_0.5",
+      "corridor": "participant07_straight_0.5_corridor3",
+      "num_frames": 696,
+      "pelvis_path_length": 1042.1600341796875
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_straight_0.7",
+      "corridor": "participant07_straight_0.7_corridor1",
+      "num_frames": 386,
+      "pelvis_path_length": 851.8121337890625
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_straight_0.7",
+      "corridor": "participant07_straight_0.7_corridor2",
+      "num_frames": 416,
+      "pelvis_path_length": 860.3074951171875
+    },
+    {
+      "participant_id": "participant07",
+      "condition": "participant07_straight_0.7",
+      "corridor": "participant07_straight_0.7_corridor3",
+      "num_frames": 423,
+      "pelvis_path_length": 836.21484375
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_left_0.3",
+      "corridor": "participant08_left_0.3_corner1",
+      "num_frames": 573,
+      "pelvis_path_length": 692.851806640625
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_left_0.3",
+      "corridor": "participant08_left_0.3_corner2",
+      "num_frames": 604,
+      "pelvis_path_length": 721.6868286132812
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_left_0.3",
+      "corridor": "participant08_left_0.3_corner3",
+      "num_frames": 502,
+      "pelvis_path_length": 563.7035522460938
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_left_0.5",
+      "corridor": "participant08_left_0.5_corner1",
+      "num_frames": 374,
+      "pelvis_path_length": 633.2739868164062
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_left_0.5",
+      "corridor": "participant08_left_0.5_corner2",
+      "num_frames": 323,
+      "pelvis_path_length": 497.1468811035156
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_left_0.5",
+      "corridor": "participant08_left_0.5_corner3",
+      "num_frames": 295,
+      "pelvis_path_length": 437.32647705078125
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_left_0.7",
+      "corridor": "participant08_left_0.7_corner1",
+      "num_frames": 348,
+      "pelvis_path_length": 634.099853515625
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_left_0.7",
+      "corridor": "participant08_left_0.7_corner2",
+      "num_frames": 237,
+      "pelvis_path_length": 386.17816162109375
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_left_0.7",
+      "corridor": "participant08_left_0.7_corner3",
+      "num_frames": 272,
+      "pelvis_path_length": 451.7855224609375
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_right_0.3",
+      "corridor": "participant08_right_0.3_corner1",
+      "num_frames": 630,
+      "pelvis_path_length": 780.79833984375
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_right_0.3",
+      "corridor": "participant08_right_0.3_corner2",
+      "num_frames": 576,
+      "pelvis_path_length": 626.0184326171875
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_right_0.3",
+      "corridor": "participant08_right_0.3_corner3",
+      "num_frames": 575,
+      "pelvis_path_length": 714.673828125
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_right_0.5",
+      "corridor": "participant08_right_0.5_corner1",
+      "num_frames": 422,
+      "pelvis_path_length": 763.982177734375
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_right_0.5",
+      "corridor": "participant08_right_0.5_corner2",
+      "num_frames": 305,
+      "pelvis_path_length": 444.0860595703125
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_right_0.5",
+      "corridor": "participant08_right_0.5_corner3",
+      "num_frames": 352,
+      "pelvis_path_length": 561.8214721679688
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_right_0.7",
+      "corridor": "participant08_right_0.7_corner1",
+      "num_frames": 307,
+      "pelvis_path_length": 574.8843994140625
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_right_0.7",
+      "corridor": "participant08_right_0.7_corner2",
+      "num_frames": 252,
+      "pelvis_path_length": 391.3646240234375
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_right_0.7",
+      "corridor": "participant08_right_0.7_corner3",
+      "num_frames": 285,
+      "pelvis_path_length": 510.7968444824219
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_straight_0.3",
+      "corridor": "participant08_straight_0.3_corridor1",
+      "num_frames": 998,
+      "pelvis_path_length": 1187.946044921875
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_straight_0.3",
+      "corridor": "participant08_straight_0.3_corridor2",
+      "num_frames": 993,
+      "pelvis_path_length": 1237.0107421875
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_straight_0.3",
+      "corridor": "participant08_straight_0.3_corridor3",
+      "num_frames": 1004,
+      "pelvis_path_length": 1296.97021484375
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_straight_0.5",
+      "corridor": "participant08_straight_0.5_corridor1",
+      "num_frames": 331,
+      "pelvis_path_length": 539.9898681640625
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_straight_0.5",
+      "corridor": "participant08_straight_0.5_corridor2",
+      "num_frames": 618,
+      "pelvis_path_length": 955.613037109375
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_straight_0.5",
+      "corridor": "participant08_straight_0.5_corridor3",
+      "num_frames": 592,
+      "pelvis_path_length": 909.0838623046875
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_straight_0.7",
+      "corridor": "participant08_straight_0.7_corridor1",
+      "num_frames": 426,
+      "pelvis_path_length": 688.182861328125
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_straight_0.7",
+      "corridor": "participant08_straight_0.7_corridor2",
+      "num_frames": 414,
+      "pelvis_path_length": 756.165283203125
+    },
+    {
+      "participant_id": "participant08",
+      "condition": "participant08_straight_0.7",
+      "corridor": "participant08_straight_0.7_corridor3",
+      "num_frames": 418,
+      "pelvis_path_length": 722.8524780273438
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_left_0.3",
+      "corridor": "participant09_left_0.3_corner1",
+      "num_frames": 672,
+      "pelvis_path_length": 688.280517578125
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_left_0.3",
+      "corridor": "participant09_left_0.3_corner2",
+      "num_frames": 601,
+      "pelvis_path_length": 653.4033203125
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_left_0.3",
+      "corridor": "participant09_left_0.3_corner3",
+      "num_frames": 677,
+      "pelvis_path_length": 627.69921875
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_left_0.5",
+      "corridor": "participant09_left_0.5_corner1",
+      "num_frames": 409,
+      "pelvis_path_length": 600.3621215820312
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_left_0.5",
+      "corridor": "participant09_left_0.5_corner2",
+      "num_frames": 320,
+      "pelvis_path_length": 345.73529052734375
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_left_0.5",
+      "corridor": "participant09_left_0.5_corner3",
+      "num_frames": 341,
+      "pelvis_path_length": 448.58123779296875
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_left_0.7",
+      "corridor": "participant09_left_0.7_corner1",
+      "num_frames": 319,
+      "pelvis_path_length": 470.52197265625
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_left_0.7",
+      "corridor": "participant09_left_0.7_corner2",
+      "num_frames": 262,
+      "pelvis_path_length": 360.9396667480469
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_left_0.7",
+      "corridor": "participant09_left_0.7_corner3",
+      "num_frames": 270,
+      "pelvis_path_length": 478.7823181152344
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_right_0.3",
+      "corridor": "participant09_right_0.3_corner1",
+      "num_frames": 587,
+      "pelvis_path_length": 527.451171875
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_right_0.3",
+      "corridor": "participant09_right_0.3_corner2",
+      "num_frames": 525,
+      "pelvis_path_length": 553.7867431640625
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_right_0.5",
+      "corridor": "participant09_right_0.5_corner1",
+      "num_frames": 362,
+      "pelvis_path_length": 401.70086669921875
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_right_0.5",
+      "corridor": "participant09_right_0.5_corner2",
+      "num_frames": 330,
+      "pelvis_path_length": 432.770263671875
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_right_0.5",
+      "corridor": "participant09_right_0.5_corner3",
+      "num_frames": 341,
+      "pelvis_path_length": 404.2315368652344
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_right_0.7",
+      "corridor": "participant09_right_0.7_corner1",
+      "num_frames": 321,
+      "pelvis_path_length": 459.2911682128906
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_right_0.7",
+      "corridor": "participant09_right_0.7_corner2",
+      "num_frames": 250,
+      "pelvis_path_length": 391.1600646972656
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_right_0.7",
+      "corridor": "participant09_right_0.7_corner3",
+      "num_frames": 271,
+      "pelvis_path_length": 398.9649963378906
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_straight_0.3",
+      "corridor": "participant09_straight_0.3_corridor1",
+      "num_frames": 943,
+      "pelvis_path_length": 844.167236328125
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_straight_0.3",
+      "corridor": "participant09_straight_0.3_corridor2",
+      "num_frames": 983,
+      "pelvis_path_length": 865.99951171875
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_straight_0.5",
+      "corridor": "participant09_straight_0.5_corridor1",
+      "num_frames": 538,
+      "pelvis_path_length": 637.239990234375
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_straight_0.5",
+      "corridor": "participant09_straight_0.5_corridor2",
+      "num_frames": 571,
+      "pelvis_path_length": 640.030029296875
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_straight_0.7",
+      "corridor": "participant09_straight_0.7_corridor1",
+      "num_frames": 404,
+      "pelvis_path_length": 578.663330078125
+    },
+    {
+      "participant_id": "participant09",
+      "condition": "participant09_straight_0.7",
+      "corridor": "participant09_straight_0.7_corridor2",
+      "num_frames": 436,
+      "pelvis_path_length": 625.3950805664062
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_left_0.3",
+      "corridor": "participant10_left_0.3_corner1",
+      "num_frames": 586,
+      "pelvis_path_length": 916.7862548828125
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_left_0.3",
+      "corridor": "participant10_left_0.3_corner2",
+      "num_frames": 597,
+      "pelvis_path_length": 914.5501708984375
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_left_0.3",
+      "corridor": "participant10_left_0.3_corner3",
+      "num_frames": 625,
+      "pelvis_path_length": 977.3790283203125
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_left_0.5",
+      "corridor": "participant10_left_0.5_corner1",
+      "num_frames": 409,
+      "pelvis_path_length": 774.3168334960938
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_left_0.5",
+      "corridor": "participant10_left_0.5_corner2",
+      "num_frames": 352,
+      "pelvis_path_length": 694.86181640625
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_left_0.5",
+      "corridor": "participant10_left_0.5_corner3",
+      "num_frames": 407,
+      "pelvis_path_length": 719.553955078125
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_left_0.7",
+      "corridor": "participant10_left_0.7_corner1",
+      "num_frames": 282,
+      "pelvis_path_length": 692.6220092773438
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_left_0.7",
+      "corridor": "participant10_left_0.7_corner2",
+      "num_frames": 313,
+      "pelvis_path_length": 637.65771484375
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_left_0.7",
+      "corridor": "participant10_left_0.7_corner3",
+      "num_frames": 293,
+      "pelvis_path_length": 623.5076904296875
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_right_0.3",
+      "corridor": "participant10_right_0.3_corner1",
+      "num_frames": 712,
+      "pelvis_path_length": 1025.6220703125
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_right_0.3",
+      "corridor": "participant10_right_0.3_corner2",
+      "num_frames": 636,
+      "pelvis_path_length": 798.1807861328125
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_right_0.3",
+      "corridor": "participant10_right_0.3_corner3",
+      "num_frames": 625,
+      "pelvis_path_length": 1226.219482421875
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_right_0.5",
+      "corridor": "participant10_right_0.5_corner1",
+      "num_frames": 419,
+      "pelvis_path_length": 768.9213256835938
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_right_0.5",
+      "corridor": "participant10_right_0.5_corner2",
+      "num_frames": 378,
+      "pelvis_path_length": 661.9965209960938
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_right_0.5",
+      "corridor": "participant10_right_0.5_corner3",
+      "num_frames": 392,
+      "pelvis_path_length": 878.2322387695312
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_right_0.7",
+      "corridor": "participant10_right_0.7_corner1",
+      "num_frames": 309,
+      "pelvis_path_length": 672.909912109375
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_right_0.7",
+      "corridor": "participant10_right_0.7_corner2",
+      "num_frames": 300,
+      "pelvis_path_length": 555.5003662109375
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_right_0.7",
+      "corridor": "participant10_right_0.7_corner3",
+      "num_frames": 306,
+      "pelvis_path_length": 751.132080078125
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_straight_0.3",
+      "corridor": "participant10_straight_0.3_corridor1",
+      "num_frames": 1107,
+      "pelvis_path_length": 1764.22412109375
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_straight_0.3",
+      "corridor": "participant10_straight_0.3_corridor2",
+      "num_frames": 1005,
+      "pelvis_path_length": 1816.905029296875
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_straight_0.3",
+      "corridor": "participant10_straight_0.3_corridor3",
+      "num_frames": 1119,
+      "pelvis_path_length": 1513.5853271484375
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_straight_0.5",
+      "corridor": "participant10_straight_0.5_corridor1",
+      "num_frames": 560,
+      "pelvis_path_length": 967.2515869140625
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_straight_0.5",
+      "corridor": "participant10_straight_0.5_corridor2",
+      "num_frames": 592,
+      "pelvis_path_length": 1197.28125
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_straight_0.5",
+      "corridor": "participant10_straight_0.5_corridor3",
+      "num_frames": 599,
+      "pelvis_path_length": 1235.13623046875
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_straight_0.7",
+      "corridor": "participant10_straight_0.7_corridor1",
+      "num_frames": 433,
+      "pelvis_path_length": 1082.44091796875
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_straight_0.7",
+      "corridor": "participant10_straight_0.7_corridor2",
+      "num_frames": 414,
+      "pelvis_path_length": 1260.142333984375
+    },
+    {
+      "participant_id": "participant10",
+      "condition": "participant10_straight_0.7",
+      "corridor": "participant10_straight_0.7_corridor3",
+      "num_frames": 438,
+      "pelvis_path_length": 1480.8935546875
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_left_0.3",
+      "corridor": "participant11_left_0.3_corner1",
+      "num_frames": 613,
+      "pelvis_path_length": 637.04345703125
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_left_0.3",
+      "corridor": "participant11_left_0.3_corner2",
+      "num_frames": 605,
+      "pelvis_path_length": 637.5173950195312
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_left_0.3",
+      "corridor": "participant11_left_0.3_corner3",
+      "num_frames": 574,
+      "pelvis_path_length": 577.657470703125
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_left_0.5",
+      "corridor": "participant11_left_0.5_corner1",
+      "num_frames": 356,
+      "pelvis_path_length": 486.72650146484375
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_left_0.5",
+      "corridor": "participant11_left_0.5_corner2",
+      "num_frames": 322,
+      "pelvis_path_length": 411.482177734375
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_left_0.5",
+      "corridor": "participant11_left_0.5_corner3",
+      "num_frames": 332,
+      "pelvis_path_length": 462.09075927734375
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_left_0.7",
+      "corridor": "participant11_left_0.7_corner1",
+      "num_frames": 287,
+      "pelvis_path_length": 467.56329345703125
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_left_0.7",
+      "corridor": "participant11_left_0.7_corner2",
+      "num_frames": 280,
+      "pelvis_path_length": 422.5757141113281
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_left_0.7",
+      "corridor": "participant11_left_0.7_corner3",
+      "num_frames": 278,
+      "pelvis_path_length": 475.658203125
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_right_0.3",
+      "corridor": "participant11_right_0.3_corner1",
+      "num_frames": 612,
+      "pelvis_path_length": 640.8255615234375
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_right_0.3",
+      "corridor": "participant11_right_0.3_corner2",
+      "num_frames": 625,
+      "pelvis_path_length": 632.0720825195312
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_right_0.3",
+      "corridor": "participant11_right_0.3_corner3",
+      "num_frames": 608,
+      "pelvis_path_length": 651.8868408203125
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_right_0.5",
+      "corridor": "participant11_right_0.5_corner1",
+      "num_frames": 316,
+      "pelvis_path_length": 431.62542724609375
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_right_0.5",
+      "corridor": "participant11_right_0.5_corner2",
+      "num_frames": 334,
+      "pelvis_path_length": 406.9646301269531
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_right_0.5",
+      "corridor": "participant11_right_0.5_corner3",
+      "num_frames": 333,
+      "pelvis_path_length": 407.57373046875
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_right_0.7",
+      "corridor": "participant11_right_0.7_corner1",
+      "num_frames": 257,
+      "pelvis_path_length": 431.8203125
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_right_0.7",
+      "corridor": "participant11_right_0.7_corner2",
+      "num_frames": 262,
+      "pelvis_path_length": 340.12298583984375
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_right_0.7",
+      "corridor": "participant11_right_0.7_corner3",
+      "num_frames": 275,
+      "pelvis_path_length": 421.2401428222656
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_straight_0.3",
+      "corridor": "participant11_straight_0.3_corridor1",
+      "num_frames": 1034,
+      "pelvis_path_length": 953.7867431640625
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_straight_0.3",
+      "corridor": "participant11_straight_0.3_corridor2",
+      "num_frames": 952,
+      "pelvis_path_length": 872.2442016601562
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_straight_0.3",
+      "corridor": "participant11_straight_0.3_corridor3",
+      "num_frames": 938,
+      "pelvis_path_length": 884.3242797851562
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_straight_0.5",
+      "corridor": "participant11_straight_0.5_corridor1",
+      "num_frames": 567,
+      "pelvis_path_length": 675.7280883789062
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_straight_0.5",
+      "corridor": "participant11_straight_0.5_corridor2",
+      "num_frames": 545,
+      "pelvis_path_length": 718.9224243164062
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_straight_0.5",
+      "corridor": "participant11_straight_0.5_corridor3",
+      "num_frames": 629,
+      "pelvis_path_length": 818.8668212890625
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_straight_0.7",
+      "corridor": "participant11_straight_0.7_corridor1",
+      "num_frames": 412,
+      "pelvis_path_length": 703.3702392578125
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_straight_0.7",
+      "corridor": "participant11_straight_0.7_corridor2",
+      "num_frames": 414,
+      "pelvis_path_length": 551.1474609375
+    },
+    {
+      "participant_id": "participant11",
+      "condition": "participant11_straight_0.7",
+      "corridor": "participant11_straight_0.7_corridor3",
+      "num_frames": 404,
+      "pelvis_path_length": 621.4261474609375
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_left_0.3",
+      "corridor": "participant12_left_0.3_corner1",
+      "num_frames": 691,
+      "pelvis_path_length": 931.5401000976562
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_left_0.3",
+      "corridor": "participant12_left_0.3_corner2",
+      "num_frames": 556,
+      "pelvis_path_length": 791.2366943359375
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_left_0.3",
+      "corridor": "participant12_left_0.3_corner3",
+      "num_frames": 603,
+      "pelvis_path_length": 780.5570068359375
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_left_0.5",
+      "corridor": "participant12_left_0.5_corner1",
+      "num_frames": 400,
+      "pelvis_path_length": 651.0821533203125
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_left_0.5",
+      "corridor": "participant12_left_0.5_corner2",
+      "num_frames": 344,
+      "pelvis_path_length": 553.3504638671875
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_left_0.5",
+      "corridor": "participant12_left_0.5_corner3",
+      "num_frames": 358,
+      "pelvis_path_length": 544.117919921875
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_left_0.7",
+      "corridor": "participant12_left_0.7_corner1",
+      "num_frames": 341,
+      "pelvis_path_length": 609.20703125
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_left_0.7",
+      "corridor": "participant12_left_0.7_corner2",
+      "num_frames": 343,
+      "pelvis_path_length": 566.8575439453125
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_left_0.7",
+      "corridor": "participant12_left_0.7_corner3",
+      "num_frames": 308,
+      "pelvis_path_length": 556.3444213867188
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_right_0.3",
+      "corridor": "participant12_right_0.3_corner1",
+      "num_frames": 649,
+      "pelvis_path_length": 884.2359619140625
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_right_0.3",
+      "corridor": "participant12_right_0.3_corner2",
+      "num_frames": 586,
+      "pelvis_path_length": 784.4322509765625
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_right_0.3",
+      "corridor": "participant12_right_0.3_corner3",
+      "num_frames": 643,
+      "pelvis_path_length": 769.9964599609375
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_right_0.5",
+      "corridor": "participant12_right_0.5_corner1",
+      "num_frames": 410,
+      "pelvis_path_length": 616.0615234375
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_right_0.5",
+      "corridor": "participant12_right_0.5_corner2",
+      "num_frames": 624,
+      "pelvis_path_length": 552.4033813476562
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_right_0.5",
+      "corridor": "participant12_right_0.5_corner3",
+      "num_frames": 344,
+      "pelvis_path_length": 522.786865234375
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_right_0.7",
+      "corridor": "participant12_right_0.7_corner1",
+      "num_frames": 329,
+      "pelvis_path_length": 605.0022583007812
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_right_0.7",
+      "corridor": "participant12_right_0.7_corner2",
+      "num_frames": 265,
+      "pelvis_path_length": 495.3653564453125
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_right_0.7",
+      "corridor": "participant12_right_0.7_corner3",
+      "num_frames": 299,
+      "pelvis_path_length": 515.775634765625
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_straight_0.3",
+      "corridor": "participant12_straight_0.3_corridor1",
+      "num_frames": 985,
+      "pelvis_path_length": 1222.4237060546875
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_straight_0.3",
+      "corridor": "participant12_straight_0.3_corridor2",
+      "num_frames": 954,
+      "pelvis_path_length": 1140.770263671875
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_straight_0.3",
+      "corridor": "participant12_straight_0.3_corridor3",
+      "num_frames": 999,
+      "pelvis_path_length": 1269.66259765625
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_straight_0.5",
+      "corridor": "participant12_straight_0.5_corridor1",
+      "num_frames": 579,
+      "pelvis_path_length": 891.4129638671875
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_straight_0.5",
+      "corridor": "participant12_straight_0.5_corridor2",
+      "num_frames": 600,
+      "pelvis_path_length": 827.4215087890625
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_straight_0.5",
+      "corridor": "participant12_straight_0.5_corridor3",
+      "num_frames": 601,
+      "pelvis_path_length": 943.1112060546875
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_straight_0.7",
+      "corridor": "participant12_straight_0.7_corridor1",
+      "num_frames": 433,
+      "pelvis_path_length": 772.2764892578125
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_straight_0.7",
+      "corridor": "participant12_straight_0.7_corridor2",
+      "num_frames": 437,
+      "pelvis_path_length": 736.9749145507812
+    },
+    {
+      "participant_id": "participant12",
+      "condition": "participant12_straight_0.7",
+      "corridor": "participant12_straight_0.7_corridor3",
+      "num_frames": 436,
+      "pelvis_path_length": 774.41064453125
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_left_0.3",
+      "corridor": "participant13_left_0.3_corner1",
+      "num_frames": 576,
+      "pelvis_path_length": 658.3651123046875
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_left_0.3",
+      "corridor": "participant13_left_0.3_corner2",
+      "num_frames": 566,
+      "pelvis_path_length": 570.6416015625
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_left_0.3",
+      "corridor": "participant13_left_0.3_corner3",
+      "num_frames": 753,
+      "pelvis_path_length": 797.6295166015625
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_left_0.5",
+      "corridor": "participant13_left_0.5_corner1",
+      "num_frames": 365,
+      "pelvis_path_length": 451.0897216796875
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_left_0.5",
+      "corridor": "participant13_left_0.5_corner2",
+      "num_frames": 334,
+      "pelvis_path_length": 436.52679443359375
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_left_0.5",
+      "corridor": "participant13_left_0.5_corner3",
+      "num_frames": 290,
+      "pelvis_path_length": 446.3468322753906
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_left_0.7",
+      "corridor": "participant13_left_0.7_corner1",
+      "num_frames": 282,
+      "pelvis_path_length": 484.4909362792969
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_left_0.7",
+      "corridor": "participant13_left_0.7_corner2",
+      "num_frames": 288,
+      "pelvis_path_length": 476.68890380859375
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_left_0.7",
+      "corridor": "participant13_left_0.7_corner3",
+      "num_frames": 368,
+      "pelvis_path_length": 533.601318359375
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_right_0.3",
+      "corridor": "participant13_right_0.3_corner1",
+      "num_frames": 684,
+      "pelvis_path_length": 732.5252685546875
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_right_0.3",
+      "corridor": "participant13_right_0.3_corner2",
+      "num_frames": 548,
+      "pelvis_path_length": 543.8780517578125
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_right_0.3",
+      "corridor": "participant13_right_0.3_corner3",
+      "num_frames": 616,
+      "pelvis_path_length": 656.7864990234375
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_right_0.5",
+      "corridor": "participant13_right_0.5_corner1",
+      "num_frames": 389,
+      "pelvis_path_length": 541.427978515625
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_right_0.5",
+      "corridor": "participant13_right_0.5_corner2",
+      "num_frames": 379,
+      "pelvis_path_length": 534.47119140625
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_right_0.5",
+      "corridor": "participant13_right_0.5_corner3",
+      "num_frames": 343,
+      "pelvis_path_length": 437.3594970703125
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_right_0.7",
+      "corridor": "participant13_right_0.7_corner1",
+      "num_frames": 271,
+      "pelvis_path_length": 451.7064208984375
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_right_0.7",
+      "corridor": "participant13_right_0.7_corner2",
+      "num_frames": 255,
+      "pelvis_path_length": 400.5631103515625
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_right_0.7",
+      "corridor": "participant13_right_0.7_corner3",
+      "num_frames": 276,
+      "pelvis_path_length": 412.6002197265625
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_straight_0.3",
+      "corridor": "participant13_straight_0.3_corridor1",
+      "num_frames": 973,
+      "pelvis_path_length": 1104.5361328125
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_straight_0.3",
+      "corridor": "participant13_straight_0.3_corridor2",
+      "num_frames": 955,
+      "pelvis_path_length": 1167.2449951171875
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_straight_0.3",
+      "corridor": "participant13_straight_0.3_corridor3",
+      "num_frames": 987,
+      "pelvis_path_length": 1135.5992431640625
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_straight_0.5",
+      "corridor": "participant13_straight_0.5_corridor1",
+      "num_frames": 565,
+      "pelvis_path_length": 840.535888671875
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_straight_0.5",
+      "corridor": "participant13_straight_0.5_corridor2",
+      "num_frames": 549,
+      "pelvis_path_length": 776.2177124023438
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_straight_0.5",
+      "corridor": "participant13_straight_0.5_corridor3",
+      "num_frames": 592,
+      "pelvis_path_length": 874.1616821289062
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_straight_0.7",
+      "corridor": "participant13_straight_0.7_corridor1",
+      "num_frames": 415,
+      "pelvis_path_length": 787.27783203125
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_straight_0.7",
+      "corridor": "participant13_straight_0.7_corridor2",
+      "num_frames": 411,
+      "pelvis_path_length": 732.9799194335938
+    },
+    {
+      "participant_id": "participant13",
+      "condition": "participant13_straight_0.7",
+      "corridor": "participant13_straight_0.7_corridor3",
+      "num_frames": 437,
+      "pelvis_path_length": 799.2476196289062
+    }
+  ]
+}

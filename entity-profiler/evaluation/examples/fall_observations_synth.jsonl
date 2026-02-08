@@ -1,0 +1,2 @@
+{"entity_id": "ent1", "timestamp": 0.0, "camera_id": "cam_fall", "fused_features": {"gait": [], "soft_biometrics": [100.0, 0.5, 2000.0], "clothing": []}}
+{"entity_id": "ent1", "timestamp": 2.0, "camera_id": "cam_fall", "fused_features": {"gait": [], "soft_biometrics": [40.0, 1.2, 2600.0], "clothing": []}}

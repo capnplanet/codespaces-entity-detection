@@ -1,0 +1,10 @@
+{
+  "num_images": 2693,
+  "true_positives": 205,
+  "false_positives": 1089,
+  "false_negatives": 10572,
+  "precision": 0.15842349304482226,
+  "recall": 0.019021991277721074,
+  "avg_latency_ms": 80.25069558596329,
+  "iou_threshold": 0.5
+}

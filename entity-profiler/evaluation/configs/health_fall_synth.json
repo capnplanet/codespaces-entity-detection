@@ -1,0 +1,22 @@
+{
+  "no_activity_hours": 1.0,
+  "night_hours": [0, 6],
+  "night_activity_threshold": 100,
+  "low_mobility_speed_threshold": 0.0,
+  "notify_min_severity": "info",
+  "areas": {},
+  "hr_high": 200.0,
+  "hr_low": 0.0,
+  "spo2_low": 0.0,
+  "wearable_window_seconds": 900.0,
+  "wearable_idle_grace_seconds": 0.0,
+  "wearables": [],
+  "fall_height_drop_ratio": 0.6,
+  "fall_aspect_ratio_increase": 1.5,
+  "fall_area_increase": 0.1,
+  "fall_time_window_seconds": 4.0,
+  "fall_speed_delta": 0.0,
+  "fall_score_threshold": 0.0,
+  "activity_window_seconds": 900.0,
+  "high_activity_count_threshold": 100
+}
